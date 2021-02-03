@@ -1,101 +1,148 @@
+
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Barcode Scanner Dengan webcam</title>
+        <meta charset="UTF-8">
+        <title>Demo</title>
         <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
-        <style type="text/css">
-        .scanner-laser{
-            position: absolute;
-            margin: 40px;
-            height: 30px;
-            width: 30px;
-        }
-        .laser-leftTop{
-            top: 0;
-            left: 0;
-            border-top: solid red 5px;
-            border-left: solid red 5px;
-        }
-        .laser-leftBottom{
-            bottom: 0;
-            left: 0;
-            border-bottom: solid red 5px;
-            border-left: solid red 5px;
-        }
-        .laser-rightTop{
-            top: 0;
-            right: 0;
-            border-top: solid red 5px;
-            border-right: solid red 5px;
-        }
-        .laser-rightBottom{
-            bottom: 0;
-            right: 0;
-            border-bottom: solid red 5px;
-            border-right: solid red 5px;
-        }
-        </style>
     </head>
     <body>
+        <h3>Simple initialization with default settings</h3>
+        <hr>
+        <canvas></canvas>
+        <hr>
+        <ul></ul>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="{{ asset('js/webcam/qrcodelib.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/webcam/webcodecamjs.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/webcam/main.js') }}"></script>
+        <!-- 
+            Using jquery version:
+            <script type="text/javascript" src="js/jquery.js"></script>
+            <script type="text/javascript" src="js/qrcodelib.js"></script>
+            <script type="text/javascript" src="js/webcodecamjquery.js"></script>
+        -->
+        <script type="text/javascript">
+            var txt = "innerText" in HTMLElement.prototype ? "innerText" : "textContent";
+            var arg = {
+                resultFunction: function(result) {
+                    /*
+                        result.format: code format,
+                        result.code: decoded string,
+                        result.imgData: decoded image data
+                    */
+                    var aChild = document.createElement('li');
+                    aChild[txt] = result.format + ': ' + result.code;
+                    document.querySelector('body').appendChild(aChild);
+                }
+            };
+    /* -------------------------------------- Available parameters --------------------------------------*/
+    var options = {
+        DecodeQRCodeRate: 5,                    // null to disable OR int > 0 !
+        DecodeBarCodeRate: 5,                   // null to disable OR int > 0 !
+        successTimeout: 500,                    // delay time when decoding is succeed
+        codeRepetition: true,                   // accept code repetition true or false
+        tryVertical: true,                      // try decoding vertically positioned barcode true or false
+        frameRate: 15,                          // 1 - 25
+        width: 320,                             // canvas width
+        height: 240,                            // canvas height
+        constraints: {                          // default constraints
+            video: {
+                mandatory: {
+                    maxWidth: 1280,
+                    maxHeight: 720
+                },
+                optional: [{
+                    sourceId: true
+                }]
+            },
+            audio: false
+        },
+        flipVertical: false,                    // boolean
+        flipHorizontal: false,                  // boolean
+        zoom: -1,                               // if zoom = -1, auto zoom for optimal resolution else int
+        beep: 'audio/beep.mp3',                 // string, audio file location
+        decoderWorker: 'js/DecoderWorker.js',   // string, DecoderWorker file location
+        brightness: 0,                          // int
+        autoBrightnessValue: false,             // functional when value autoBrightnessValue is int
+        grayScale: false,                       // boolean
+        contrast: 0,                            // int
+        threshold: 0,                           // int 
+        sharpness: [],      // to On declare matrix, example for sharpness ->  [0, -1, 0, -1, 5, -1, 0, -1, 0]
+        resultFunction: function(result) {
+            /*
+                result.format: code format,
+                result.code: decoded string,
+                result.imgData: decoded image data
+            */
+            alert(result.code);
+        },
+        cameraSuccess: function(stream) {           //callback funtion to camera success
+            console.log('cameraSuccess');
+        },
+        canPlayFunction: function() {               //callback funtion to can play
+            console.log('canPlayFunction');
+        },
+        getDevicesError: function(error) {          //callback funtion to get Devices error
+            console.log(error);
+        },
+        getUserMediaError: function(error) {        //callback funtion to get usermedia error
+            console.log(error);
+        },
+        cameraError: function(error) {              //callback funtion to camera error  
+            console.log(error);
+        }
+    };
 
-        <div id="QR-Code" class="container" style="width:100%">
-            <div class="panel panel-primary">
-                <div class="panel-heading" style="display: inline-block;width: 100%;">
-                    <h4 style="width:50%;float:left;">WebCodeCam.js Demonstration</h4>
-                    <div style="width:50%;float:right;margin-top: 5px;margin-bottom: 5px;text-align: right;">
-                    <select id="cameraId" class="form-control" style="display: inline-block;width: auto;"></select>
-                    <button id="save" data-toggle="tooltip" title="Image shoot" type="button" class="btn btn-info btn-sm disabled"><span class="glyphicon glyphicon-picture"></span></button>
-                    <button id="play" data-toggle="tooltip" title="Play" type="button" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-play"></span></button>
-                    <button id="stop" data-toggle="tooltip" title="Stop" type="button" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-stop"></span></button>
-                    <button id="stopAll" data-toggle="tooltip" title="Stop streams" type="button" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-stop"></span></button>
-                </div>
-            </div>
-            <div class="panel-body">
-                <div class="col-md-6" style="text-align: center;">
-                    <div class="well" style="position: relative;display: inline-block;">
-                        <canvas id="qr-canvas" width="320" height="240"></canvas>
-                        <div class="scanner-laser laser-rightBottom" style="opacity: 0.5;"></div>
-                        <div class="scanner-laser laser-rightTop" style="opacity: 0.5;"></div>
-                        <div class="scanner-laser laser-leftBottom" style="opacity: 0.5;"></div>
-                        <div class="scanner-laser laser-leftTop" style="opacity: 0.5;"></div>
-                    </div>
+    /*---------------------------- Example initializations Javascript version ----------------------------*/
+    new WebCodeCamJS("canvas").init(arg);
+    /* OR */
+    var canvas = document.querySelector('#webcodecam-canvas');
+    new WebCodeCamJS(canvas).init();
+    /* OR */
+    new WebCodeCamJS('#webcodecam-canvas').init();
 
-                    <!--
-                    <div class="well" style="position: relative;" >
-                        <label id="zoom-value" width="100">Zoom: 2</label>
-                        <input type="range" id="zoom" value="20" min="10" max="30" onchange="Page.changeZoom();"/>
-                        <label id="brightness-value" width="100">Brightness: 0</label>
-                        <input type="range" id="brightness" value="0" min="0" max="128" onchange="Page.changeBrightness();"/>
-                        <label id="contrast-value" width="100">Contrast: 0</label>
-                        <input type="range" id="contrast" value="0" min="0" max="64" onchange="Page.changeContrast();"/>
-                        <label id="threshold-value" width="100">Threshold: 0</label>
-                        <input type="range" id="threshold" value="0" min="0" max="512" onchange="Page.changeThreshold();"/>
-                        <label id="sharpness-value" width="100">Sharpness: off</label>
-                        <input type="checkbox" id="sharpness" onchange="Page.changeSharpness();"/>
-                        <label id="grayscale-value" width="100">grayscale: off</label>
-                        <input type="checkbox" id="grayscale" onchange="Page.changeGrayscale();"/>
-                    </div>-->
-                </div>
-                <div class="col-md-6" style="text-align: center;">
-                    <div id="result" class="thumbnail">
-                        <div class="well" style="position: relative;display: inline-block;">
-                            <img id="scanned-img" src="" width="320" height="240">
-                        </div>
-                        <div class="caption">
-                            <h3>Scanned result</h3>
-                            <p id="scanned-QR"></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="panel-footer">
-            </div>
-        </div>
-    </div>
-</body>
-<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="{{ asset('js/webcam/qrcodelib.js') }}"></script>
-<script type="text/javascript" src="{{ asset('js/webcam/webcodecamjs.js') }}"></script>
-<script type="text/javascript" src="{{ asset('js/webcam/main.js') }}"></script>
+    /*------------------------ Example initializations jquery & Javascript version ------------------------*/
+    var decoder = new WebCodeCamJS('#webcodecam-canvas');
+
+    var decoder = $("#webcodecam-canvas").WebCodeCamJQuery(args).data().plugin_WebCodeCamJQuery;
+
+    decoder.buildSelectMenu('#camera-select', sel); //sel : default camera optional
+    /* Chrome & MS Edge: build select menu
+    *  Firefox: the default camera initializes, return decoder object 
+    */
+    //simple initialization
+    decoder.init();
+    /* Select environment camera if available */
+    decoder.buildSelectMenu('#camera-select', 'environment|back').init(args);
+    /* Select user camera if available */
+    decoder.buildSelectMenu('#camera-select', 'user|front').init(args);
+    /* Select camera by name */
+    decoder.buildSelectMenu('#camera-select', 'facecam').init(args);
+    /* Select first camera */
+    decoder.buildSelectMenu('#camera-select', 0).init(args);
+    /* Select environment camera if available, without visible select menu*/
+    decoder.buildSelectMenu(document.createElement('select'), 'environment|back').init().play();   
+
+    /* --------------------------------------- Available Functions: ----------------------------------------*/
+    /* camera stop & delete stream */
+    decoder.stop();
+    /* camera play, restore process */
+    decoder.play();
+    /* get current image from camera */
+    decoder.getLastImageSrc();
+    /* decode local image */
+    /* if url is defined download image before staring open process */
+    decoder.decodeLocalImage(url);
+    /* get optimal zoom */
+    decoder.getOptimalZoom();
+    /* Configurable options */
+    decoder.options['parameter'];
+    /* Example: 
+    ** decoder.options.brightness = 20;         - set brightness to 20
+    ** decoder.options.DecodeQRCodeRate = null; - disable qrcode decoder
+    */
+        </script>
+    </body>
 </html>
