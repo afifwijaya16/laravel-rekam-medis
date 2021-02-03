@@ -16,3 +16,9 @@
         <p>Data Pasien</p>
     </a>
 </li>
+<li class="nav-item">
+    <a href="{{ url('/') }}" class="nav-link">
+        <i class="fa fa-address-card nav-icon"></i>
+        <p>Data Pasien</p>
+    </a>
+</li>
