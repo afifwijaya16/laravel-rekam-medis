@@ -17,8 +17,8 @@
     </a>
 </li>
 <li class="nav-item">
-    <a href="{{ url('/') }}" class="nav-link">
+    <a href="{{ url('/test') }}" class="nav-link">
         <i class="fa fa-address-card nav-icon"></i>
-        <p>Data Pasien</p>
+        <p>Test</p>
     </a>
 </li>
