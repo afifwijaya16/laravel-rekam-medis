@@ -25,3 +25,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('/obat','ObatController');
 Route::resource('/pasien','PasienController');
 Route::resource('/dokter','DokterController');
+Route::resource('/rekam_medis','RekammedisController')->names('rekam_medis');
