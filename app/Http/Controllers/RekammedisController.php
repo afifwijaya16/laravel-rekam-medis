@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Pasien;
 use App\Rekammedis;
 use App\Resep;
-
+use View;
 class RekammedisController extends Controller
 {
     public function __construct()
@@ -64,6 +64,12 @@ class RekammedisController extends Controller
         $rekam_medis = Rekammedis::findorfail($id);
         $rekam_medis->delete();
         return redirect()->route('rekam_medis.index')->with('status', 'Berhasil Menghapus Data');
+    }
+
+    public function cek_pasien($id) 
+    {
+        $pasien_cek = Pasien::findorfail($id);
+        return view('rekam_medis.modal_pasien', compact('pasien_cek'))->renderSections()['modal'];
     }
 
     public function diagnosa() 

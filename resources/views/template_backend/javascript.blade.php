@@ -30,6 +30,7 @@
       "responsive": false,
     });
   });
+  
 </script>
 @stack('js')
 </body>

@@ -23,6 +23,16 @@
             console.log(error);
         })
     }
+    $(document).ready(function () {
+            $('body').on('click', '#showData', function (event) {
+            event.preventDefault();
+            var id = $(this).data('id');
+            $.get('cek_pasien/' + id , function (data) {
+                $('#modal-detail').modal('show');
+                $("#data_modal").html(data); //replace load to html
+            })
+        });
+    });
 </script>
 
 @if (session('status'))

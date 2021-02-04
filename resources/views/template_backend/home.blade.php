@@ -27,6 +27,7 @@
             @yield('content')
         </div>
     </section>
+    @yield('modal')
 </div>
 
 @include('template_backend/footer')

@@ -19,7 +19,6 @@
                     @if($hasil->status_rekam_medis == 'Antri')
                     <span class="btn btn-xs btn-danger">{{ $hasil->status_rekam_medis }}</span>
                     @endif
-
                 </td>
                 <td class="text-center">
                     <form action="{{ route('rekam_medis.destroy', $hasil->id) }}" id="form-delete-{{ $hasil->id}}"
@@ -27,13 +26,9 @@
                         @csrf
                         @method('delete')
                         <div class="btn-group">
-                            <button type="button" class="btn btn-sm btn-info" title="Detail" data-toggle="modal"
-                                data-target="#modal-detail-{{ $hasil->id }}" data-backdrop="static"
-                                data-keyboard="false">
-                                <i class="fa fa-eye"></i>
-                            </button>
+                            <a href="#" id="showData" class="btn btn-sm btn-primary" data-id="{{ $hasil->pasien->id }}"><i class="fa fa-eye"></i></a>
                             <button class="btn btn-sm btn-danger" name="delete" type="submit"
-                                onclick="deleteFunction({{ $hasil->id}})" title="Hapus"> 
+                                onclick="deleteFunction({{ $hasil->id}})">
                                 <i class="fa fa-trash"></i>
                             </button>
                         </div>
