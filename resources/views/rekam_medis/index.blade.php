@@ -59,4 +59,5 @@
     </div>
 </div>
 @include('rekam_medis/javascript')
+@include('rekam_medis/showpasien')
 @endsection

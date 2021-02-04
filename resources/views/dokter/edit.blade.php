@@ -5,89 +5,43 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <form action="{{ route('dokter.update', $dokter->id) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('dokter.update', $dokter->id) }}" method="POST">
                     @csrf
                     @method('patch')
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Nama Dokter </label>
-                                <input type="text"
-                                    class="form-control form-control-sm @error('nama_dokter') is-invalid @enderror" name="nama_dokter"
-                                    placeholder="Nama Dokter " value="{{ $dokter->nama_dokter }}">
-                                @error('nama_dokter')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                                @enderror
-                            </div>
+                    <div class="form-group">
+                        <label>Name</label>
+                    <input type="text" class="form-control form-control-sm @error('name') is-invalid @enderror" value="{{  $dokter->name }}" name="name">
+                        @error('name')
+                        <div class="invalid-feedback">
+                          {{ $message }}
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label>Alamat Dokter</label>
-                                <textarea name="alamat_dokter"
-                                    class="form-control form-control-sm @error('alamat_dokter') is-invalid @enderror">{{ $dokter->alamat_dokter }}</textarea>
-                                @error('alamat_dokter')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                                @enderror
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Tanggal Lahir</label>
-                                <input type="date"
-                                    class="form-control form-control-sm @error('tgl_lahir_dokter') is-invalid @enderror" name="tgl_lahir_dokter"
-                                    placeholder="Tanggal Lahir" value="{{ $dokter->tgl_lahir_dokter }}">
-                                @error('tgl_lahir_dokter')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label>Agama</label>
-                                <input type="text"
-                                    class="form-control form-control-sm @error('agama_dokter') is-invalid @enderror" name="agama_dokter"
-                                    placeholder="Agama" value="{{ $dokter->agama_dokter }}">
-                                @error('agama_dokter')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label>No Telepon</label>
-                                <input type="text"
-                                    class="form-control form-control-sm @error('telp_dokter') is-invalid @enderror" name="telp_dokter"
-                                    placeholder="No Telepon" value="{{ $dokter->telp_dokter }}">
-                                @error('telp_dokter')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                                @enderror
-                            </div>
-                        </div>
+                        @enderror
                     </div>
                     <div class="form-group">
-                        <button class="btn btn-sm btn-primary">Simpan</button>
-                        <a href="{{ route('obat.index') }}" class="btn btn-warning btn-sm">Kembali</a>
+                        <label>Email</label>
+                        <input type="text" class="form-control form-control-sm @error('email') is-invalid @enderror" value="{{ $dokter->email }}" name="email">
+                        @error('email')
+                        <div class="invalid-feedback">
+                          {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="text" class="form-control form-control-sm @error('password') is-invalid @enderror" name="password">
+                        @error('password')
+                        <div class="invalid-feedback">
+                          {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-sm btn-primary">Update</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
-<script>
-    CKEDITOR.replace('textAreaEditor');
-</script>
 @endsection

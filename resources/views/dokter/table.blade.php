@@ -4,8 +4,7 @@
             <tr>
                 <th width="5%">No</th>
                 <th width="30%">Nama Dokter</th>
-                <th width="20%">Alamat Dokter</th>
-                <th width="5%">Telp</th>
+                <th width="20%">Email</th>
                 <th width="25%">Aksi</th>
             </tr>
         </thead>
@@ -13,9 +12,8 @@
             @foreach ($dokter as $result => $hasil)
             <tr class="table-sm">
                 <td class="text-center">{{ $loop->iteration }}</td>
-                <td class="text-center">{{ $hasil->nama_dokter }}</td>
-                <td class="text-center">{{ $hasil->alamat_dokter }}</td>
-                <td class="text-center">{{ $hasil->telp_dokter }}</td>
+                <td class="text-center">{{ $hasil->name }}</td>
+                <td class="text-center">{{ $hasil->email }}</td>
                 <td class="text-center">
                     <form action="{{ route('dokter.destroy', $hasil->id) }}" id="form-delete-{{ $hasil->id}}" role="form"
                         method="POST">

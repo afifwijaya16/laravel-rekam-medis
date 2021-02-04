@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Pasien;
 use App\Rekammedis;
+use App\Resep;
 
 class RekammedisController extends Controller
 {
@@ -43,13 +44,14 @@ class RekammedisController extends Controller
 
     public function show($id)
     {
-        //
+       
     }
 
     public function edit($id)
     {
         $rekam_medis = Rekammedis::findorfail($id);
-        return view('rekam_medis.diagnosa_edit', compact('rekam_medis'));
+        $resep = Resep::orderBy('created_at', 'desc')->get();
+        return view('rekam_medis.diagnosa_edit', compact('rekam_medis','resep'));
     }
 
     public function update(Request $request, $id)

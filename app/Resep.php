@@ -10,6 +10,5 @@ class Resep extends Model
         'no_resep',
         'resep',
         'tanggal_resep',
-        'id_rekam_medis',
     ];
 }

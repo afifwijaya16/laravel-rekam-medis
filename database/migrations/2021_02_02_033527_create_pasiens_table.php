@@ -15,6 +15,7 @@ class CreatePasiensTable extends Migration
     {
         Schema::create('pasiens', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('nomor_pasien');             
             $table->string('nama_pasien', 50);             
             $table->string('alamat', 100);
             $table->date('tgl_lahir');

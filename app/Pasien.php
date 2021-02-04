@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Pasien extends Model
 {
     protected $fillable = [
+        'nomor_pasien',
         'nama_pasien',
         'alamat',
         'tgl_lahir',

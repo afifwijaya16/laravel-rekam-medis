@@ -16,21 +16,29 @@
                 <td class="text-center">{{ $hasil->no_rekam }}</td>
                 <td class="text-center">{{ $hasil->pasien->nama_pasien }}</td>
                 <td class="text-center">
-                @if($hasil->status_rekam_medis == 'Antri')
+                    @if($hasil->status_rekam_medis == 'Antri')
                     <span class="btn btn-xs btn-danger">{{ $hasil->status_rekam_medis }}</span>
-                @endif
-                    
+                    @endif
+
                 </td>
                 <td class="text-center">
-                    <form action="{{ route('rekam_medis.destroy', $hasil->id) }}" id="form-delete-{{ $hasil->id}}" role="form"
-                        method="POST">
+                    <form action="{{ route('rekam_medis.destroy', $hasil->id) }}" id="form-delete-{{ $hasil->id}}"
+                        role="form" method="POST">
                         @csrf
                         @method('delete')
-                        <button class="btn btn-sm btn-danger" name="delete" type="submit"
-                            onclick="deleteFunction({{ $hasil->id}})">
-                            <i class="fa fa-trash"></i>
-                        </button>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-sm btn-info" title="Detail" data-toggle="modal"
+                                data-target="#modal-detail-{{ $hasil->id }}" data-backdrop="static"
+                                data-keyboard="false">
+                                <i class="fa fa-eye"></i>
+                            </button>
+                            <button class="btn btn-sm btn-danger" name="delete" type="submit"
+                                onclick="deleteFunction({{ $hasil->id}})" title="Hapus"> 
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </div>
                     </form>
+
                 </td>
             </tr>
             @endforeach

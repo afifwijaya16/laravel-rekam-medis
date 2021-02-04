@@ -18,7 +18,6 @@ class CreateResepsTable extends Migration
             $table->string('no_resep');
             $table->string('resep');
             $table->date('tanggal_resep');
-            $table->string('id_rekam_medis');
             $table->timestamps();
         });
     }

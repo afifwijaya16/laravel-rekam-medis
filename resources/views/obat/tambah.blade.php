@@ -21,7 +21,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <!-- <div class="col-md-6">
                             <div class="form-group">
                                 <label>Gambar </label>
                                 <input type="file"
@@ -33,7 +33,7 @@
                                 </div>
                                 @enderror
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="row">
                         <div class="col-md-6">

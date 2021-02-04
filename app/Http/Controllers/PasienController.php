@@ -41,6 +41,7 @@ class PasienController extends Controller
         ]);
 
         $pasien = Pasien::create([
+            'nomor_pasien' => time(),
             'nama_pasien' => $request->nama_pasien,
             'alamat' => $request->alamat,
             'tgl_lahir' => $request->tgl_lahir,
@@ -53,36 +54,18 @@ class PasienController extends Controller
         return redirect()->route('pasien.index')->with('status', 'Berhasil Menambah Data');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
-        //
+        
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function edit($id)
     {
         $pasien = Pasien::findorfail($id);
         return view('pasien.edit', compact('pasien'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $this->validate($request, [

@@ -107,8 +107,8 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Keluhan</label>
-                                        <textarea name="keluhan"
-                                            class="form-control form-control-sm" disabled>{{ $rekam_medis->keluhan }}</textarea>
+                                        <textarea name="keluhan" class="form-control form-control-sm"
+                                            disabled>{{ $rekam_medis->keluhan }}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -131,10 +131,86 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-10">
+                                    <div class="form-group">
+                                        <label>Pilih Resep</label>
+                                        <select name="id_resep" id="mySelect"
+                                            class="js-example-basic-single form-control form-control-sm @error('id_resep') is-invalid @enderror">
+                                            <option value="0" selected disabled>-- Pilih Resep --</option>
+                                            @foreach ($resep as $result)
+                                            <option value="{{ $result->id }}"
+                                                {{ (collect(old('id_resep'))->contains($result->id)) ? 'selected':'' }}>
+                                                {{ $result->resep }}
+                                            </option>
+                                            @endforeach
+                                        </select>
+                                        @error('id_resep')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <div class="form-group">
+                                        <label> &nbsp;</label>
+                                        <br>
+                                        <button type="button" class="btn btn-sm btn-info" title="Detail"
+                                            data-toggle="modal" data-target="#moda-tambah-resep" data-backdrop="static"
+                                            data-keyboard="false">
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </form>
             </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="moda-tambah-resep">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Tambah Resep</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{{ route('rekam_medis.store') }}" method="POST">
+                <div class="modal-body" style="max-height: calc(100vh - 210px);  overflow-y: auto;">
+                    @csrf
+                    <div class="form-group">
+                        <div class="col-sm-12 bg-primary my-2">
+                            <label class="control-label m-0"><strong>Data Pasien</strong></label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Nama Resep Obat </label>
+                        <input type="text"
+                            class="form-control form-control-sm @error('resep') is-invalid @enderror"
+                            name="resep" placeholder="Nama Resep Obat" value="{{ old('resep') }}">
+                        @error('resep')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+
+
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="submit" class="btn btn-primary">Tambah</button>
+                    <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal"><i class="fa fa-times"></i>
+                        Tutup</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

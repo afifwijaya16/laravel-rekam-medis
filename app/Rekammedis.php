@@ -12,15 +12,20 @@ class Rekammedis extends Model
         'keluhan',
         'diagnoesa',
         'tindakan',
-        'id_dokter',
+        'id_user',
         'status_rekam_medis',
+        'id_resep',
     ];
 
     public function pasien(){
         return $this->belongsTo('App\Pasien', 'id_pasien');
     }
 
-    public function dokter(){
-        return $this->belongsTo('App\Dokter', 'id_dokter');
+    public function user(){
+        return $this->belongsTo('App\User', 'id_user');
+    }
+
+    public function resep(){
+        return $this->belongsTo('App\Resep', 'id_resep');
     }
 }
