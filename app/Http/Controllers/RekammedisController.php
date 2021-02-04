@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use App\Pasien;
 use App\Rekammedis;
 use App\Resep;
-use View;
+use App\Obat;
+use Session;
 class RekammedisController extends Controller
 {
     public function __construct()
@@ -49,9 +50,10 @@ class RekammedisController extends Controller
 
     public function edit($id)
     {
+        $obat = Obat::orderBy('created_at', 'desc')->get();
         $rekam_medis = Rekammedis::findorfail($id);
         $resep = Resep::orderBy('created_at', 'desc')->get();
-        return view('rekam_medis.diagnosa_edit', compact('rekam_medis','resep'));
+        return view('rekam_medis.diagnosa_edit', compact('rekam_medis','resep','obat'));
     }
 
     public function update(Request $request, $id)
@@ -76,5 +78,13 @@ class RekammedisController extends Controller
     {
         $rekam_medis = Rekammedis::where('status_rekam_medis', 'Antri')->orderBy('created_at', 'asc')->get();
         return view('rekam_medis.diagnosa', compact('rekam_medis'));
+    }
+
+    public function tambah_resep_obat(Request $request) {
+        $obat = Obat::where('id',$request->input('id'))->first();
+
+        // 
+       
+        
     }
 }

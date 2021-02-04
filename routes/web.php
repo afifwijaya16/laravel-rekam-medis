@@ -28,3 +28,5 @@ Route::resource('/dokter','DokterController');
 Route::resource('/rekam_medis','RekammedisController')->names('rekam_medis');
 Route::get('/cek_pasien/{id}','RekammedisController@cek_pasien')->name('cek_pasien');
 Route::get('/diagnosa','RekammedisController@diagnosa')->name('diagnosa');
+
+Route::post('/tambah_resep_obat','RekammedisController@tambah_resep_obat')->name('tambah_resep_obat');

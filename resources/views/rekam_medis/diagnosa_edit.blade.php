@@ -193,8 +193,7 @@
 
                     <div class="form-group">
                         <label>Nama Resep Obat </label>
-                        <input type="text"
-                            class="form-control form-control-sm @error('resep') is-invalid @enderror"
+                        <input type="text" class="form-control form-control-sm @error('resep') is-invalid @enderror"
                             name="resep" placeholder="Nama Resep Obat" value="{{ old('resep') }}">
                         @error('resep')
                         <div class="invalid-feedback">
@@ -203,7 +202,7 @@
                         @enderror
                     </div>
 
-
+                    
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="submit" class="btn btn-primary">Tambah</button>
@@ -211,6 +210,41 @@
                         Tutup</button>
                 </div>
             </form>
+            <div class="card-body">
+            <div class="row">
+                        <div class="col-6">
+                        
+                        </div>
+                        <div class="col-6">
+                            <div class="table-responsive">
+                                <table id="dataTable" class="table table-sm table-bordered table-striped" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th width="5%">No</th>
+                                            <th width="30%">Nama Obat</th>
+                                            <th width="25%">Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($obat as $result => $row_obat)
+                                        <tr class="table-sm">
+                                            <td class="text-center">{{ $loop->iteration }}</td>
+                                            <td class="text-center">{{ $row_obat->nama }}</td>
+                                            <td class="text-center">
+                                                <form action="{{ route('tambah_resep_obat') }}" method="POST">
+                                                    @csrf
+                                                    <input type="hidden" name="id" value="{{ $row_obat->id }}">
+                                                    <button class="btn btn-xs btn-primary">Tambah</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+            </div>
         </div>
     </div>
 </div>
