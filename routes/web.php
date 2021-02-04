@@ -26,3 +26,4 @@ Route::resource('/obat','ObatController');
 Route::resource('/pasien','PasienController');
 Route::resource('/dokter','DokterController');
 Route::resource('/rekam_medis','RekammedisController')->names('rekam_medis');
+Route::get('/diagnosa','RekammedisController@diagnosa')->name('diagnosa');

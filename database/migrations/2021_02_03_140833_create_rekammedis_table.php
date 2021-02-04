@@ -18,6 +18,7 @@ class CreateRekammedisTable extends Migration
             $table->string('no_rekam');                      
             $table->string('id_pasien');
             $table->string('keluhan');
+            $table->string('tindakan')->nullable();
             $table->string('diagnosa')->nullable();
             $table->string('id_dokter')->nullable();
             $table->string('status_rekam_medis');

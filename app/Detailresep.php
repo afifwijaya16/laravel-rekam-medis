@@ -9,5 +9,6 @@ class Detailresep extends Model
     protected $fillable = [
         'id_obat',
         'id_resep',
+        'keterangan',
     ];
 }

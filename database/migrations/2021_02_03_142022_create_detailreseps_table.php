@@ -17,6 +17,7 @@ class CreateDetailresepsTable extends Migration
             $table->bigIncrements('id');
              $table->string('id_obat');
             $table->string('id_resep');
+            $table->string('keterangan');
             $table->timestamps();
         });
     }

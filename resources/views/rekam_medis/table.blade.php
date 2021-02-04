@@ -15,11 +15,15 @@
                 <td class="text-center">{{ $loop->iteration }}</td>
                 <td class="text-center">{{ $hasil->no_rekam }}</td>
                 <td class="text-center">{{ $hasil->pasien->nama_pasien }}</td>
-                <td class="text-center">{{ $hasil->status_rekam_medis }}</td>
+                <td class="text-center">
+                @if($hasil->status_rekam_medis == 'Antri')
+                    <span class="btn btn-xs btn-danger">{{ $hasil->status_rekam_medis }}</span>
+                @endif
+                    
+                </td>
                 <td class="text-center">
                     <form action="{{ route('rekam_medis.destroy', $hasil->id) }}" id="form-delete-{{ $hasil->id}}" role="form"
                         method="POST">
-                        <a href="{{ route('rekam_medis.edit', $hasil-> id) }}" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>
                         @csrf
                         @method('delete')
                         <button class="btn btn-sm btn-danger" name="delete" type="submit"

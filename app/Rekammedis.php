@@ -11,6 +11,7 @@ class Rekammedis extends Model
         'id_pasien',
         'keluhan',
         'diagnoesa',
+        'tindakan',
         'id_dokter',
         'status_rekam_medis',
     ];
