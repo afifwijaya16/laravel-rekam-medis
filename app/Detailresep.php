@@ -11,4 +11,8 @@ class Detailresep extends Model
         'id_resep',
         'keterangan',
     ];
+
+    public function resep(){
+        return $this->belongsToMany('App\Resep');
+    }
 }

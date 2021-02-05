@@ -7,6 +7,8 @@ use App\Pasien;
 use App\Rekammedis;
 use App\Resep;
 use App\Obat;
+use App\Detailresep;
+use Auth;
 use Session;
 class RekammedisController extends Controller
 {
@@ -40,6 +42,7 @@ class RekammedisController extends Controller
             'keluhan' => $request->keluhan,
             'status_rekam_medis' => 'Antri',
         ]);
+
         return redirect()->route('rekam_medis.index')->with('status', 'Berhasil Menambah Data');
     }
 
@@ -53,12 +56,36 @@ class RekammedisController extends Controller
         $obat = Obat::orderBy('created_at', 'desc')->get();
         $rekam_medis = Rekammedis::findorfail($id);
         $resep = Resep::orderBy('created_at', 'desc')->get();
+
+        $rekam_medis_data = [
+            'id_dokter' => Auth::user()->id,
+            'status_rekam_medis' => 'Pemeriksaan',
+        ];
+        $rekam_medis->update($rekam_medis_data);
+
         return view('rekam_medis.diagnosa_edit', compact('rekam_medis','resep','obat'));
     }
 
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'id_resep' => 'required',
+            'tindakan' => 'required',
+            'catatan' => 'required',
+        ]);
+
+        $rekam_medis = Rekammedis::findorfail($id);
+
+        $rekam_medis_data = [
+            'id_resep' => $request->id_resep,
+            'tindakan' => $request->tindakan,
+            'catatan' => $request->catatan,
+            'status_rekam_medis' => 'Selesai Pemeriksaan',
+        ];
+
+        $rekam_medis->update($rekam_medis_data);
+
+        return redirect()->route('rekam_medis.index')->with('status', 'Pasien Telah Diperiksa');
     }
 
     public function destroy($id)
@@ -77,14 +104,30 @@ class RekammedisController extends Controller
     public function diagnosa() 
     {
         $rekam_medis = Rekammedis::where('status_rekam_medis', 'Antri')->orderBy('created_at', 'asc')->get();
-        return view('rekam_medis.diagnosa', compact('rekam_medis'));
+        $rekam_medis_pemeriksaan = Rekammedis::where('status_rekam_medis', 'Pemeriksaan')->orderBy('updated_at', 'desc')->get();
+        $rekam_medis_selesai = Rekammedis::where('status_rekam_medis', 'Selesai Pemeriksaan')->orderBy('updated_at', 'desc')->get();
+        return view('rekam_medis.diagnosa', compact('rekam_medis','rekam_medis_pemeriksaan', 'rekam_medis_selesai'));
     }
 
     public function tambah_resep_obat(Request $request) {
-        $obat = Obat::where('id',$request->input('id'))->first();
 
-        // 
-       
+        $resep = Resep::create([
+            'no_resep' => time(),
+            'resep' => $request->resep,
+            'tanggal_resep' => date('Y-m-d'),
+        ]);
         
+        $obat = $request->obat;
+        $data = [];
+        foreach($obat as $obat_id) {
+            $data[] = [
+                'id_obat' => $obat_id,
+                'id_resep' => $resep->id,
+                'keterangan' => ' ',
+            ];
+        }
+        Detailresep::insert($data);
+
+        return back()->withInput();
     }
 }

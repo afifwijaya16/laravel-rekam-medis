@@ -15,6 +15,7 @@ class Rekammedis extends Model
         'id_user',
         'status_rekam_medis',
         'id_resep',
+        'catatan',
     ];
 
     public function pasien(){

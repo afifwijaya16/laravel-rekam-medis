@@ -11,4 +11,8 @@ class Resep extends Model
         'resep',
         'tanggal_resep',
     ];
+
+    public function detailresep(){
+        return $this->belongsToMany('App\Detailresep');
+    }
 }

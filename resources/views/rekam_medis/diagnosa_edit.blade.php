@@ -1,6 +1,11 @@
 @extends('template_backend/home')
 @section('sub-breadcrumb', 'Diagnosa')
 @section('content')
+<style>
+    .select2-container--default .select2-selection--multiple .select2-selection__choice {
+        background-color: #2980b9;
+    }
+</style>
 <div class="row">
     <div class="col-12">
         <div class="card">
@@ -92,10 +97,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <button class="btn btn-sm btn-primary">Selesai</button>
-                                <a href="{{ route('diagnosa') }}" class="btn btn-warning btn-sm">Kembali</a>
-                            </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
@@ -152,16 +153,37 @@
                                         @enderror
                                     </div>
                                 </div>
+                                
                                 <div class="col-2">
                                     <div class="form-group">
                                         <label> &nbsp;</label>
                                         <br>
                                         <button type="button" class="btn btn-sm btn-info" title="Detail"
-                                            data-toggle="modal" data-target="#moda-tambah-resep" data-backdrop="static"
+                                            data-toggle="modal" data-target="#modal-tambah-resep" data-backdrop="static"
                                             data-keyboard="false">
                                             <i class="fa fa-plus"></i>
                                         </button>
                                     </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Catatan</label>
+                                        <textarea name="catatan"
+                                            class="form-control form-control-sm @error('catatan') is-invalid @enderror">{{ old('catatan') }}</textarea>
+                                        @error('catatan')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group">
+                                    <button class="btn btn-sm btn-primary">Selesai</button>
+                                    <a href="{{ route('diagnosa') }}" class="btn btn-warning btn-sm">Kembali</a>
                                 </div>
                             </div>
                         </div>
@@ -173,7 +195,7 @@
 </div>
 
 
-<div class="modal fade" id="moda-tambah-resep">
+<div class="modal fade" id="modal-tambah-resep" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -182,7 +204,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{ route('rekam_medis.store') }}" method="POST">
+            <form action="{{ route('tambah_resep_obat') }}" method="POST">
                 <div class="modal-body" style="max-height: calc(100vh - 210px);  overflow-y: auto;">
                     @csrf
                     <div class="form-group">
@@ -202,6 +224,19 @@
                         @enderror
                     </div>
 
+                    <div class="form-group">
+                        <label>Obat</label>
+                        <select name="obat[]" class="form-control js-example-basic-multiple" multiple="multiple">
+                            @foreach ($obat as $result)
+                                <option value="{{ $result->id }}" {{in_array($result->id, old("obat") ?: []) ? "selected": ""}}>{{ $result->nama }}</option> 
+                            @endforeach
+                        </select>
+                        @error('tag_id')
+                        <div class="invalid-feedback">
+                          {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
                     
                 </div>
                 <div class="modal-footer justify-content-between">
@@ -210,42 +245,20 @@
                         Tutup</button>
                 </div>
             </form>
-            <div class="card-body">
-            <div class="row">
-                        <div class="col-6">
-                        
-                        </div>
-                        <div class="col-6">
-                            <div class="table-responsive">
-                                <table id="dataTable" class="table table-sm table-bordered table-striped" width="100%">
-                                    <thead>
-                                        <tr>
-                                            <th width="5%">No</th>
-                                            <th width="30%">Nama Obat</th>
-                                            <th width="25%">Aksi</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($obat as $result => $row_obat)
-                                        <tr class="table-sm">
-                                            <td class="text-center">{{ $loop->iteration }}</td>
-                                            <td class="text-center">{{ $row_obat->nama }}</td>
-                                            <td class="text-center">
-                                                <form action="{{ route('tambah_resep_obat') }}" method="POST">
-                                                    @csrf
-                                                    <input type="hidden" name="id" value="{{ $row_obat->id }}">
-                                                    <button class="btn btn-xs btn-primary">Tambah</button>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                        @endforeach
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-
-            </div>
         </div>
     </div>
 </div>
+
+@push('js')
+<script>
+    $(document).ready(function() {
+        $('.js-example-basic-multiple').select2({
+            width: '100%'
+        });
+        $('.js-example-basic-single').select2({
+            width: '100%'
+        });
+    });
+</script>
+@endpush
 @endsection
