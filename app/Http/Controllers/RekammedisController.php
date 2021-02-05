@@ -85,7 +85,7 @@ class RekammedisController extends Controller
 
         $rekam_medis->update($rekam_medis_data);
 
-        return redirect()->route('rekam_medis.index')->with('status', 'Pasien Telah Diperiksa');
+        return redirect()->route('diagnosa')->with('status', 'Pasien Telah Diperiksa');
     }
 
     public function destroy($id)
