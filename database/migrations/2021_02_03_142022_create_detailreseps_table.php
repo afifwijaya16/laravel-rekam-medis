@@ -15,8 +15,8 @@ class CreateDetailresepsTable extends Migration
     {
         Schema::create('detailreseps', function (Blueprint $table) {
             $table->bigIncrements('id');
-             $table->string('id_obat');
-            $table->string('id_resep');
+             $table->integer('id_obat');
+            $table->integer('id_resep');
             $table->string('keterangan');
             $table->timestamps();
         });
