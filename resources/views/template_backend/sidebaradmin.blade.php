@@ -34,6 +34,12 @@
         <p>Diagnosa</p>
     </a>
 </li>
+<li class="nav-item">
+    <a href="{{ route('apotik.index') }}" class="nav-link {{ request()->is('apotik*') ? 'active' : '' }}">
+        <i class="fa fa-address-card nav-icon"></i>
+        <p>Apotik</p>
+    </a>
+</li>
 <!-- <li class="nav-item">
     <a href="{{ url('/test') }}" class="nav-link">
         <i class="fa fa-address-card nav-icon"></i>

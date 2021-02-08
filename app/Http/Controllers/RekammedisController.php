@@ -10,6 +10,7 @@ use App\Obat;
 use App\Detailresep;
 use Auth;
 use Session;
+
 class RekammedisController extends Controller
 {
     public function __construct()
