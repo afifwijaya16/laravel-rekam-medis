@@ -111,6 +111,11 @@ class RekammedisController extends Controller
 
     public function tambah_resep_obat(Request $request) {
 
+        $this->validate($request, [
+            'obat' => 'required',
+            'resep' => 'required',
+        ]);
+
         $resep = Resep::create([
             'no_resep' => time(),
             'resep' => $request->resep,
@@ -128,7 +133,7 @@ class RekammedisController extends Controller
         }
         Detailresep::insert($data);
 
-        return back()->withInput();
+        return back()->withInput()->with('status', 'Berhasil Menambah Data');;
     }
 
 }

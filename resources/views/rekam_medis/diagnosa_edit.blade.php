@@ -207,11 +207,6 @@
             <form action="{{ route('tambah_resep_obat') }}" method="POST">
                 <div class="modal-body" style="max-height: calc(100vh - 210px);  overflow-y: auto;">
                     @csrf
-                    <div class="form-group">
-                        <div class="col-sm-12 bg-primary my-2">
-                            <label class="control-label m-0"><strong>Data Pasien</strong></label>
-                        </div>
-                    </div>
 
                     <div class="form-group">
                         <label>Nama Resep Obat </label>

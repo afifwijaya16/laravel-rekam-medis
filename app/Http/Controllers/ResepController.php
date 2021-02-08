@@ -16,8 +16,9 @@ class ResepController extends Controller
 
     public function index()
     {
+        $obat = Obat::orderBy('created_at', 'desc')->get();
         $resep = Resep::with('detailreseps')->orderBy('created_at', 'desc')->get();
-        return view('resep.index', compact('resep'));
+        return view('resep.index', compact('resep','obat'));
     }
 
     /**
