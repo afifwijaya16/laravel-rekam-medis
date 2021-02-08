@@ -17,7 +17,7 @@ class CreateResepsTable extends Migration
             $table->bigIncrements('id');
             $table->string('no_resep');
             $table->string('resep');
-            $table->date('tanggal_resep');
+            $table->string('id_user');
             $table->timestamps();
         });
     }

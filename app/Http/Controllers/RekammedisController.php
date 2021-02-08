@@ -114,7 +114,7 @@ class RekammedisController extends Controller
         $resep = Resep::create([
             'no_resep' => time(),
             'resep' => $request->resep,
-            'tanggal_resep' => date('Y-m-d'),
+            'id_user' => Auth::user()->id,
         ]);
         
         $obat = $request->obat;
@@ -130,4 +130,5 @@ class RekammedisController extends Controller
 
         return back()->withInput();
     }
+
 }

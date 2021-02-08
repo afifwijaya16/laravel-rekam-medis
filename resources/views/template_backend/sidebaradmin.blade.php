@@ -17,6 +17,12 @@
     </a>
 </li>
 <li class="nav-item">
+    <a href="{{ route('resep.index') }}" class="nav-link {{ request()->is('resep*') ? 'active' : '' }}">
+        <i class="fa fa-address-card nav-icon"></i>
+        <p>Resep</p>
+    </a>
+</li>
+<li class="nav-item">
     <a href="{{ route('rekam_medis.index') }}" class="nav-link {{ request()->is('rekam_medis') ? 'active' : '' }}">
         <i class="fa fa-address-card nav-icon"></i>
         <p>Registrasi</p>
