@@ -10,7 +10,7 @@ class Rekammedis extends Model
         'no_rekam',
         'id_pasien',
         'keluhan',
-        'diagnoesa',
+        'catatan_apoteker',
         'tindakan',
         'id_user',
         'status_rekam_medis',

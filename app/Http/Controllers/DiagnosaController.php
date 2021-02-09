@@ -94,6 +94,7 @@ class DiagnosaController extends Controller
             'id_resep' => 'required',
             'tindakan' => 'required',
             'catatan' => 'required',
+            'catatan_apoteker' => 'required',
         ]);
 
         $rekam_medis = Rekammedis::findorfail($id);
@@ -102,6 +103,7 @@ class DiagnosaController extends Controller
             'id_resep' => $request->id_resep,
             'tindakan' => $request->tindakan,
             'catatan' => $request->catatan,
+            'catatan_apoteker' => $request->catatan_apoteker,
             'status_rekam_medis' => 'Selesai Pemeriksaan',
         ];
 

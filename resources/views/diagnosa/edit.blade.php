@@ -22,84 +22,51 @@
                                     <label class="control-label m-0"><strong>Data Dokter</strong></label>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Nama Dokter</label>
-                                        <input type="hidden" class="form-control form-control-sm" name="id_dokter"
-                                            value="{{ Auth::user()->id }}">
-                                        <input type="text" class="form-control form-control-sm" name="nama_dokter"
-                                            value="{{ Auth::user()->name }}" disabled>
-                                    </div>
-                                </div>
-                            </div>
+                            <!-- id dokter -->
+                            <input type="hidden" class="form-control form-control-sm" name="id_dokter"value="{{ Auth::user()->id }}">
+                            <table class="table table-sm table-bordered table-striped">
+                                <tr>
+                                    <td>Nama Dokter</td>
+                                    <td>{{ Auth::user()->name }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Spesialis</td>
+                                    <td>{{ Auth::user()->spesialis }}</td>
+                                </tr>
+                            </table>
+                            
                             <div class="form-group">
                                 <div class="col-sm-12 bg-primary my-2">
                                     <label class="control-label m-0"><strong>Data Pasien</strong></label>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>No Registrasi</label>
-                                        <input type="text"
-                                            class="form-control form-control-sm @error('no_rekam') is-invalid @enderror"
-                                            name="no_rekam" value="{{ $rekam_medis->no_rekam }}" disabled>
-                                        @error('no_rekam')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Nama Pasien</label>
-                                        <input type="text" class="form-control form-control-sm" name="nama"
-                                            value="{{ $rekam_medis->pasien->nama_pasien }}" disabled>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Tanggal Lahir</label>
-                                        <input type="text" class="form-control form-control-sm" name="nama"
-                                            value="{{ $rekam_medis->pasien->tgl_lahir }}" disabled>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Alamat</label>
-                                        <textarea name="alamat" class="form-control form-control-sm"
-                                            disabled>{{ $rekam_medis->pasien->alamat }}</textarea>
 
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label>Pekerjaan </label>
-                                        <input type="text" class="form-control form-control-sm" name="pekerjaan"
-                                            placeholder="Pekerjaan" value="{{ $rekam_medis->pasien->pekerjaan }}"
-                                            disabled>
-
-                                    </div>
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="form-group">
-                                        <label>Alergi obat</label>
-                                        <textarea name="alergi_obat" class="form-control form-control-sm"
-                                            disabled>{{ $rekam_medis->pasien->alergi_obat }}</textarea>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
+                            <table class="table table-sm table-bordered table-striped">
+                                <tr>
+                                    <td>Nomor Registrasi</td>
+                                    <td>{{ $rekam_medis->no_rekam }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Nama Pasien</td>
+                                    <td>{{ $rekam_medis->pasien->nama_pasien }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Tanggal Lahir</td>
+                                    <td>{{ $rekam_medis->pasien->tgl_lahir }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Alamat</td>
+                                    <td>{{ $rekam_medis->pasien->alamat }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Pekerjaan</td>
+                                    <td>{{ $rekam_medis->pasien->pekerjaan }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Alergi Obat</td>
+                                    <td>{{ $rekam_medis->pasien->alergi_obat }}</td>
+                                </tr>
+                            </table>
                             <div class="form-group">
                                 <div class="col-sm-12 bg-primary my-2">
                                     <label class="control-label m-0"><strong>Diagnosa</strong></label>
@@ -114,6 +81,9 @@
                                     </div>
                                 </div>
                             </div>
+                         </div>
+                        <div class="col-md-6">
+                            
                             <div class="form-group">
                                 <div class="col-sm-12 bg-primary my-2">
                                     <label class="control-label m-0"><strong>Tindakan</strong></label>
@@ -183,9 +153,23 @@
                                 </div>
                             </div>
                             <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Catatan Untuk Apoteker</label>
+                                        <textarea name="catatan_apoteker"
+                                            class="form-control form-control-sm @error('catatan_apoteker') is-invalid @enderror">{{ old('catatan_apoteker') }}</textarea>
+                                        @error('catatan_apoteker')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
                                 <div class="form-group">
-                                    <button class="btn btn-sm btn-primary">Selesai</button>
-                                    <a href="" class="btn btn-warning btn-sm">Kembali</a>
+                                    <button class="btn btn-sm btn-primary"><i class="fa fa-save"></i> Selesai</button>
+                                    <!-- <a href="" class="btn btn-warning btn-sm"><i class="fa fa-arrow-left"></i>Kembali</a> -->
                                 </div>
                             </div>
                         </div>
