@@ -30,5 +30,5 @@ Route::get('/cek_pasien/{id}','RekammedisController@cek_pasien')->name('cek_pasi
 Route::get('/diagnosa','RekammedisController@diagnosa')->name('diagnosa');
 Route::resource('/resep','ResepController')->names('resep');
 Route::resource('/apotik','ApotikController')->names('apotik');
-
+Route::put('/jumlah_qty/{id}', 'ApotikController@jumlahqty')->name('apotik.qty');
 Route::post('/tambah_resep_obat','RekammedisController@tambah_resep_obat')->name('tambah_resep_obat');

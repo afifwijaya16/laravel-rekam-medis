@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDetailresepsTable extends Migration
+class CreatePengeluaranobatsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateDetailresepsTable extends Migration
      */
     public function up()
     {
-        Schema::create('detailreseps', function (Blueprint $table) {
+        Schema::create('pengeluaranobats', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('id_obat');
             $table->integer('id_resep');
+            $table->integer('qty');
+            $table->integer('total');
             $table->string('keterangan');
             $table->timestamps();
         });
@@ -29,6 +31,6 @@ class CreateDetailresepsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('detailreseps');
+        Schema::dropIfExists('pengeluaranobats');
     }
 }

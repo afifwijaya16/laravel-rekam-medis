@@ -33,6 +33,32 @@
                 </div>
             </div>
         </div>
+        <div class="card">
+            <div class="card-header">
+                Data Telah Membayar Obat
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="dataTable" class="table table-sm table-bordered table-striped" width="100%">
+                        <thead>
+                            <tr>
+                                <th width="5%">No</th>
+                                <th width="30%">No Registrasi</th>
+                                <th width="30%">Nama Pasien</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($rekam_medis_telah_bayar as $result => $hasil)
+                            <tr class="table-sm">
+                                <td class="text-center">{{ $loop->iteration }}</td>
+                                <td class="text-center">{{ $hasil->no_rekam }}</td>
+                                <td class="text-center">{{ $hasil->pasien->nama_pasien }}</td>
+                            </tr>
+                            @endforeach
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 @endsection

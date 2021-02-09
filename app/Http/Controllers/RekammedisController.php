@@ -8,6 +8,7 @@ use App\Rekammedis;
 use App\Resep;
 use App\Obat;
 use App\Detailresep;
+use App\Pengeluaranobat;
 use Auth;
 use Session;
 
@@ -64,6 +65,7 @@ class RekammedisController extends Controller
         ];
         $rekam_medis->update($rekam_medis_data);
 
+
         return view('rekam_medis.diagnosa_edit', compact('rekam_medis','resep','obat'));
     }
 
@@ -85,6 +87,19 @@ class RekammedisController extends Controller
         ];
 
         $rekam_medis->update($rekam_medis_data);
+
+        $pObat = Resep::with('detailreseps')->find($request->id_resep);
+        $data = [];
+        foreach($pObat->detailreseps as $pobats) {
+            $data[] = [
+                'id_obat' => $pobats->id_obat,
+                'id_resep' => $pobats->id_resep,
+                'qty' => 0,
+                'total' => 0,
+                'keterangan' => ' ',
+            ];
+        }
+        Pengeluaranobat::insert($data);
 
         return redirect()->route('diagnosa')->with('status', 'Pasien Telah Diperiksa');
     }
@@ -134,7 +149,7 @@ class RekammedisController extends Controller
         }
         Detailresep::insert($data);
 
-        return back()->withInput()->with('status', 'Berhasil Menambah Data');;
+        return back()->withInput()->with('status', 'Berhasil Menambah Data');
     }
 
 }

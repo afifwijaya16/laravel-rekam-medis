@@ -5,6 +5,7 @@
     .select2-container--default .select2-selection--multiple .select2-selection__choice {
         background-color: #2980b9;
     }
+
 </style>
 <div class="row">
     <div class="col-12">
@@ -118,20 +119,7 @@
                                     <label class="control-label m-0"><strong>Tindakan</strong></label>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Tindakan</label>
-                                        <textarea name="tindakan"
-                                            class="form-control form-control-sm @error('tindakan') is-invalid @enderror">{{ old('tindakan') }}</textarea>
-                                        @error('tindakan')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
+
                             <div class="row">
                                 <div class="col-10">
                                     <div class="form-group">
@@ -166,6 +154,20 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Tindakan</label>
+                                            <textarea name="tindakan"
+                                                class="form-control form-control-sm @error('tindakan') is-invalid @enderror">{{ old('tindakan') }}</textarea>
+                                            @error('tindakan')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
@@ -223,16 +225,18 @@
                         <label>Obat</label>
                         <select name="obat[]" class="form-control js-example-basic-multiple" multiple="multiple">
                             @foreach ($obat as $result)
-                                <option value="{{ $result->id }}" {{in_array($result->id, old("obat") ?: []) ? "selected": ""}}>{{ $result->nama }}</option> 
+                            <option value="{{ $result->id }}"
+                                {{in_array($result->id, old("obat") ?: []) ? "selected": ""}}>{{ $result->nama }}
+                            </option>
                             @endforeach
                         </select>
                         @error('tag_id')
                         <div class="invalid-feedback">
-                          {{ $message }}
+                            {{ $message }}
                         </div>
                         @enderror
                     </div>
-                    
+
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="submit" class="btn btn-primary">Tambah</button>
@@ -246,7 +250,7 @@
 
 @push('js')
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         $('.js-example-basic-multiple').select2({
             width: '100%'
         });
@@ -254,6 +258,7 @@
             width: '100%'
         });
     });
+
 </script>
 @endpush
 @endsection
