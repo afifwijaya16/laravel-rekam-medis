@@ -134,6 +134,7 @@ class ApotikController extends Controller
         } else if($request->submitbutton == 'submit_pembayaran') {
             $rekam = Rekammedis::findorfail($id);
             $rekam_data = [
+                'total_pembayaran' => $request->total_pembayaran,
                 'status_rekam_medis' => 'Telah Bayar'
             ];
             $rekam->update($rekam_data);

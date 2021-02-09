@@ -55,7 +55,8 @@
                                 <td class="text-center">{{ $hasil->no_rekam }}</td>
                                 <td class="text-center">{{ $hasil->pasien->nama_pasien }}</td>
                                 <td class="text-center">
-                                    <a href="#" id="showData" class="btn btn-sm btn-primary" data-id="{{ $hasil->id }}"><i class="fa fa-eye"></i></a>
+                                    <a href="#" id="showData" class="btn btn-xs btn-primary" data-id="{{ $hasil->id }}"><i class="fa fa-eye"></i></a>
+                                    <a href="{{ route('apotik.edit', $hasil-> id) }}" class="btn btn-xs btn-warning"><i class="fa fa-edit"></i></a>
                                 </td>
                             </tr>
                             @endforeach

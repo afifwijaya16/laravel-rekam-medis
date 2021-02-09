@@ -28,6 +28,10 @@
                     <td><b>{{ $rekam_medis->pasien->nama_pasien}}</b></td>
                 </tr>
                 <tr>
+                    <td><b>Keluhan</b></td>
+                    <td><b>{{ $rekam_medis->keluhan}}</b></td>
+                </tr>
+                <tr>
                     <td><b>Tindakan</b></td>
                     <td><b>{{ $rekam_medis->tindakan}}</b></td>
                 </tr>
@@ -149,6 +153,7 @@
             <form action="{{ route('apotik.update', $rekam_medis->id) }}" method="POST">
                 @csrf
                 @method('put')
+                <input type="hidden" class="form-control" name="total_pembayaran" value="{{ $total_harga }}">
                 <button type="submit" value="submit_pembayaran" class="btn btn-success float-right" name="submitbutton"><i class="far fa-credit-card"></i> Check Out
                 </button>
             </form>

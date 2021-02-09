@@ -22,6 +22,10 @@
                     <td><b>{{ $rekam_medis->pasien->nama_pasien}}</b></td>
                 </tr>
                 <tr>
+                    <td><b>Keluhan</b></td>
+                    <td><b>{{ $rekam_medis->keluhan}}</b></td>
+                </tr>
+                <tr>
                     <td><b>Tindakan</b></td>
                     <td><b>{{ $rekam_medis->tindakan}}</b></td>
                 </tr>

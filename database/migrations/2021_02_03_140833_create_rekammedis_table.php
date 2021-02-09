@@ -23,6 +23,7 @@ class CreateRekammedisTable extends Migration
             $table->string('catatan')->nullable();
             $table->string('id_dokter')->nullable();
             $table->string('id_resep')->nullable();
+            $table->integer('total_pembayaran')->nullable();
             $table->string('status_rekam_medis');
             $table->timestamps();
         });
