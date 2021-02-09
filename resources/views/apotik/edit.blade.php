@@ -6,6 +6,11 @@
         background-color: #2980b9;
     }
 </style>
+<div class="alert alert-success alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <h5><i class="icon fas fa-check"></i> Catatan Untuk Apoteker!</h5>
+    {{ $rekam_medis->catatan_apoteker }}
+</div>
 <div class="invoice p-3 mb-3">
     <div class="row">
         <div class="col-12">
