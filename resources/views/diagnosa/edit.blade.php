@@ -23,7 +23,8 @@
                                 </div>
                             </div>
                             <!-- id dokter -->
-                            <input type="hidden" class="form-control form-control-sm" name="id_dokter"value="{{ Auth::user()->id }}">
+                            <input type="hidden" class="form-control form-control-sm" name="id_dokter"
+                                value="{{ Auth::user()->id }}">
                             <table class="table table-sm table-bordered table-striped">
                                 <tr>
                                     <td>Nama Dokter</td>
@@ -34,7 +35,7 @@
                                     <td>{{ Auth::user()->spesialis }}</td>
                                 </tr>
                             </table>
-                            
+
                             <div class="form-group">
                                 <div class="col-sm-12 bg-primary my-2">
                                     <label class="control-label m-0"><strong>Data Pasien</strong></label>
@@ -81,9 +82,9 @@
                                     </div>
                                 </div>
                             </div>
-                         </div>
+                        </div>
                         <div class="col-md-6">
-                            
+
                             <div class="form-group">
                                 <div class="col-sm-12 bg-primary my-2">
                                     <label class="control-label m-0"><strong>Tindakan</strong></label>
@@ -111,7 +112,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                
+
                                 <div class="col-2">
                                     <div class="form-group">
                                         <label> &nbsp;</label>
@@ -125,26 +126,12 @@
                                 </div>
                             </div>
                             <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Tindakan</label>
-                                            <textarea name="tindakan"
-                                                class="form-control form-control-sm @error('tindakan') is-invalid @enderror">{{ old('tindakan') }}</textarea>
-                                            @error('tindakan')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                </div>
-                            <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label>Catatan</label>
-                                        <textarea name="catatan"
-                                            class="form-control form-control-sm @error('catatan') is-invalid @enderror">{{ old('catatan') }}</textarea>
-                                        @error('catatan')
+                                        <label>Diagnosa</label>
+                                        <textarea name="diagnosa"
+                                            class="form-control form-control-sm @error('diagnosa') is-invalid @enderror">{{ old('diagnosa') }}</textarea>
+                                        @error('diagnosa')
                                         <div class="invalid-feedback">
                                             {{ $message }}
                                         </div>
@@ -152,32 +139,53 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Catatan Untuk Apoteker</label>
-                                        <textarea name="catatan_apoteker"
-                                            class="form-control form-control-sm @error('catatan_apoteker') is-invalid @enderror">{{ old('catatan_apoteker') }}</textarea>
-                                        @error('catatan_apoteker')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
+                            <div class="col-md-12">
                                 <div class="form-group">
-                                    <button class="btn btn-sm btn-primary"><i class="fa fa-save"></i> Selesai</button>
-                                    <!-- <a href="" class="btn btn-warning btn-sm"><i class="fa fa-arrow-left"></i>Kembali</a> -->
+                                    <label>Tindakan</label>
+                                    <textarea name="tindakan"
+                                        class="form-control form-control-sm @error('tindakan') is-invalid @enderror">{{ old('tindakan') }}</textarea>
+                                    @error('tindakan')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
                                 </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Catatan</label>
+                                    <textarea name="catatan"
+                                        class="form-control form-control-sm @error('catatan') is-invalid @enderror">{{ old('catatan') }}</textarea>
+                                    @error('catatan')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Catatan Untuk Apoteker</label>
+                                    <textarea name="catatan_apoteker"
+                                        class="form-control form-control-sm @error('catatan_apoteker') is-invalid @enderror">{{ old('catatan_apoteker') }}</textarea>
+                                    @error('catatan_apoteker')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-sm btn-primary"><i class="fa fa-save"></i> Selesai</button>
+                                <!-- <a href="" class="btn btn-warning btn-sm"><i class="fa fa-arrow-left"></i>Kembali</a> -->
                             </div>
                         </div>
                     </div>
-                </form>
             </div>
+            </form>
         </div>
     </div>
+</div>
 </div>
 
 

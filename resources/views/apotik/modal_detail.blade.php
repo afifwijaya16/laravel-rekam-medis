@@ -26,6 +26,10 @@
                     <td><b>{{ $rekam_medis->keluhan}}</b></td>
                 </tr>
                 <tr>
+                    <td><b>Diagnosa</b></td>
+                    <td><b>{{ $rekam_medis->diagnosa}}</b></td>
+                </tr>
+                <tr>
                     <td><b>Tindakan</b></td>
                     <td><b>{{ $rekam_medis->tindakan}}</b></td>
                 </tr>

@@ -11,6 +11,7 @@ class Rekammedis extends Model
         'id_pasien',
         'keluhan',
         'catatan_apoteker',
+        'diagnosa',
         'tindakan',
         'id_user',
         'status_rekam_medis',

@@ -94,6 +94,7 @@ class DiagnosaController extends Controller
             'id_resep' => 'required',
             'tindakan' => 'required',
             'catatan' => 'required',
+            'diagnosa' => 'required',
             'catatan_apoteker' => 'required',
         ]);
 
@@ -103,6 +104,7 @@ class DiagnosaController extends Controller
             'id_resep' => $request->id_resep,
             'tindakan' => $request->tindakan,
             'catatan' => $request->catatan,
+            'diagnosa' => $request->diagnosa,
             'catatan_apoteker' => $request->catatan_apoteker,
             'status_rekam_medis' => 'Selesai Pemeriksaan',
         ];
