@@ -133,13 +133,10 @@ class ApotikController extends Controller
             return back()->withInput()->with('status', 'Berhasil Menambah Keterangan Data');
         } else if($request->submitbutton == 'submit_pembayaran') {
             $rekam = Rekammedis::findorfail($id);
-
             $rekam_data = [
                 'status_rekam_medis' => 'Telah Bayar'
             ];
-    
             $rekam->update($rekam_data);
-    
             return redirect()->route('apotik.index')->with('status', 'Data Berhasil disimpan');
         }
     }

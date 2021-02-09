@@ -23,13 +23,13 @@
     </a>
 </li>
 <li class="nav-item">
-    <a href="{{ route('rekam_medis.index') }}" class="nav-link {{ request()->is('rekam_medis') ? 'active' : '' }}">
+    <a href="{{ route('registrasi.index') }}" class="nav-link {{ request()->is('registrasi') ? 'active' : '' }}">
         <i class="fa fa-address-card nav-icon"></i>
         <p>Registrasi</p>
     </a>
 </li>
 <li class="nav-item">
-    <a href="{{ route('diagnosa') }}" class="nav-link {{ request()->is('diagnosa*') ? 'active' : '' }}">
+    <a href="{{ route('diagnosa.index') }}" class="nav-link {{ request()->is('diagnosa*') ? 'active' : '' }}">
         <i class="fa fa-address-card nav-icon"></i>
         <p>Diagnosa</p>
     </a>

@@ -8,7 +8,7 @@
                 <form action="{{ route('obat.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <div class="form-group">
                                 <label>Nama Obat </label>
                                 <input type="text"
@@ -49,7 +49,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <div class="form-group">
                                 <label>Stock Obat</label>
                                 <input type="number"
@@ -62,9 +62,7 @@
                                 @enderror
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <div class="form-group">
                                 <label>Dosis</label>
                                 <input type="text"
@@ -77,7 +75,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <div class="form-group">
                                 <label>Satuan</label>
                                 <input type="text"
@@ -90,9 +88,7 @@
                                 @enderror
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <div class="form-group">
                                 <label>Kemasan </label>
                                 <input type="text"
@@ -105,7 +101,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-md-12">
+                        <!-- <div class="col-md-12">
                             <div class="form-group">
                                 <label>Komposisi</label>
                                 <textarea name="komposisi" id="textAreaEditor"
@@ -116,7 +112,7 @@
                                 </div>
                                 @enderror
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="row">
                         <div class="col-md-12">

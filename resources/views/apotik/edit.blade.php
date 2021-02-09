@@ -146,7 +146,7 @@
     </div>
     <div class="row no-print">
         <div class="col-12">
-            <form action="{{ route('apotik.update', $detail_resep->id) }}" method="POST">
+            <form action="{{ route('apotik.update', $rekam_medis->id) }}" method="POST">
                 @csrf
                 @method('put')
                 <button type="submit" value="submit_pembayaran" class="btn btn-success float-right" name="submitbutton"><i class="far fa-credit-card"></i> Check Out

@@ -11,7 +11,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <form action="{{ route('rekam_medis.update', $rekam_medis->id) }}" method="POST"
+                <form action="{{ route('diagnosa.update', $rekam_medis->id) }}" method="POST"
                     enctype="multipart/form-data">
                     @csrf
                     @method('patch')
@@ -185,7 +185,7 @@
                             <div class="row">
                                 <div class="form-group">
                                     <button class="btn btn-sm btn-primary">Selesai</button>
-                                    <a href="{{ route('diagnosa') }}" class="btn btn-warning btn-sm">Kembali</a>
+                                    <a href="" class="btn btn-warning btn-sm">Kembali</a>
                                 </div>
                             </div>
                         </div>

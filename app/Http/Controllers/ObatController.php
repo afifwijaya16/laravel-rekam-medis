@@ -33,7 +33,7 @@ class ObatController extends Controller
             'stock'  => 'required',
             'satuan'  => 'required',
             'kemasan'  => 'required',
-            'komposisi'  => 'required',
+            // 'komposisi'  => 'required',
             'dosis'  => 'required',
             'keterangan'  => 'required',
         ]);
@@ -49,7 +49,7 @@ class ObatController extends Controller
             'stock' => $request->stock,
             'satuan' => $request->satuan,
             'kemasan' => $request->kemasan,
-            'komposisi' => $request->komposisi,
+            'komposisi' => '-',
             'dosis' => $request->dosis,
             'keterangan' => $request->keterangan,
         ]);
@@ -79,7 +79,7 @@ class ObatController extends Controller
             'stock'  => 'required',
             'satuan'  => 'required',
             'kemasan'  => 'required',
-            'komposisi'  => 'required',
+            // 'komposisi'  => 'required',
             'dosis'  => 'required',
             'keterangan'  => 'required',
         ]);
@@ -121,7 +121,7 @@ class ObatController extends Controller
             'stock' => $request->stock,
             'satuan' => $request->satuan,
             'kemasan' => $request->kemasan,
-            'komposisi' => $request->komposisi,
+            'komposisi' => '-',
             'dosis' => $request->dosis,
             'keterangan' => $request->keterangan,
         ];

@@ -26,9 +26,13 @@ Route::resource('/obat','ObatController');
 Route::resource('/pasien','PasienController');
 Route::resource('/dokter','DokterController');
 Route::resource('/rekam_medis','RekammedisController')->names('rekam_medis');
-Route::get('/cek_pasien/{id}','RekammedisController@cek_pasien')->name('cek_pasien');
-Route::get('/diagnosa','RekammedisController@diagnosa')->name('diagnosa');
+Route::resource('/registrasi','RegistrasiController')->names('registrasi');
+Route::get('/cek_pasien/{id}','RegistrasiController@cek_pasien')->name('cek_pasien');
+
+// Route::get('/diagnosa','RekammedisController@diagnosa')->name('diagnosa');
+Route::resource('/diagnosa','DiagnosaController')->names('diagnosa');
+
 Route::resource('/resep','ResepController')->names('resep');
 Route::resource('/apotik','ApotikController')->names('apotik');
 Route::get('apotik/cek_data/{id}','ApotikController@cek_data')->name('cek_data');
-Route::post('/tambah_resep_obat','RekammedisController@tambah_resep_obat')->name('tambah_resep_obat');
+Route::post('/tambah_resep_obat','DiagnosaController@tambah_resep_obat')->name('tambah_resep_obat');

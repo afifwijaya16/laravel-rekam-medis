@@ -25,7 +25,7 @@
                                 <td class="text-center">{{ $hasil->no_rekam }}</td>
                                 <td class="text-center">{{ $hasil->pasien->nama_pasien }}</td>
                                 <td class="text-center">
-                                    <a href="{{ route('rekam_medis.edit', $hasil-> id) }}" class="btn btn-xs btn-warning"><i class="fa fa-edit"></i>Cek Pasien</a>
+                                    <a href="{{ route('diagnosa.edit', $hasil-> id) }}" class="btn btn-xs btn-warning"><i class="fa fa-edit"></i>Cek Pasien</a>
                                 </td>
                             </tr>
                             @endforeach
@@ -55,7 +55,7 @@
                                 <td class="text-center">{{ $hasil->no_rekam }}</td>
                                 <td class="text-center">{{ $hasil->pasien->nama_pasien }}</td>
                                 <td class="text-center">
-                                    <a href="{{ route('rekam_medis.edit', $hasil-> id) }}" class="btn btn-xs btn-warning"><i class="fa fa-edit"></i>Cek Pasien</a>
+                                    <a href="{{ route('diagnosa.edit', $hasil-> id) }}" class="btn btn-xs btn-warning"><i class="fa fa-edit"></i>Cek Pasien</a>
                                 </td>
                             </tr>
                             @endforeach
@@ -85,7 +85,7 @@
                                 <td class="text-center">{{ $hasil->no_rekam }}</td>
                                 <td class="text-center">{{ $hasil->pasien->nama_pasien }}</td>
                                 <td class="text-center">
-                                    <a href="{{ route('rekam_medis.edit', $hasil-> id) }}" class="btn btn-xs btn-warning"><i class="fa fa-edit"></i>Cek Pasien</a>
+                                    <a href="{{ route('diagnosa.edit', $hasil-> id) }}" class="btn btn-xs btn-warning"><i class="fa fa-edit"></i>Cek Pasien</a>
                                 </td>
                             </tr>
                             @endforeach
