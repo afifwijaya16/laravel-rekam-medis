@@ -34,13 +34,21 @@ class DokterController extends Controller
         $this->validate($request,[
             'name' => 'required',
             'email' => 'required|email',
+            'no_telepon' => 'required',
+            'spesialis' => 'required',
             'password' => 'required',
+            'alamat' => 'required',
+            'tanggal_lahir' => 'required',
             
         ]);
 
         $dokter = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'no_telepon' => $request->no_telepon,
+            'spesialis' => $request->spesialis,
+            'alamat' => $request->alamat,
+            'tanggal_lahir' => $request->tanggal_lahir,
             'password' => bcrypt($request->password),
             'level' => 'Dokter'
         ]);
@@ -64,6 +72,10 @@ class DokterController extends Controller
         $this->validate($request,[
             'name' => 'required',
             'email' => 'required|email',
+            'no_telepon' => 'required',
+            'spesialis' => 'required',
+            'alamat' => 'required',
+            'tanggal_lahir' => 'required',
         ]);
 
         $dokter = User::findorfail($id);
@@ -72,12 +84,20 @@ class DokterController extends Controller
             $dokter_data = [
                 'name' => $request->name,
                 'email' => $request->email,
+                'no_telepon' => $request->no_telepon,
+                'spesialis' => $request->spesialis,
+                'alamat' => $request->alamat,
+                'tanggal_lahir' => $request->tanggal_lahir,
                 'password' => bcrypt($request->password),
             ];
         } else {
             $dokter_data = [
                 'name' => $request->name,
                 'email' => $request->email,
+                'no_telepon' => $request->no_telepon,
+                'spesialis' => $request->spesialis,
+                'alamat' => $request->alamat,
+                'tanggal_lahir' => $request->tanggal_lahir,
             ];
         }
 

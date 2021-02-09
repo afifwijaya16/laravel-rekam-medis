@@ -20,7 +20,10 @@ class User extends Authenticatable
         'email',
         'password',
         'level',
-        'no_telepon'
+        'no_telepon',
+        'spesialis',
+        'alamat',
+        'tanggal_lahir',
     ];
 
     /**
