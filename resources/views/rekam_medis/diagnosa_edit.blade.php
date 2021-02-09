@@ -230,7 +230,7 @@
                             </option>
                             @endforeach
                         </select>
-                        @error('tag_id')
+                        @error('obat')
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>

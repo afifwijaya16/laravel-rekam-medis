@@ -43,7 +43,19 @@ class ApotikController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'id_obat' => 'required',
+        ]);
+
+        $obat = Pengeluaranobat::create([
+            'id_obat' => $request->id_obat,
+            'id_resep' => $request->id_resep,
+            'qty' => 0,
+            'total' => 0,
+            'keterangan' => ' ',
+        ]);
+
+        return back()->withInput()->with('status', 'Berhasil Menambah Data');
     }
 
     /**
@@ -65,9 +77,10 @@ class ApotikController extends Controller
      */
     public function edit($id)
     {
+        $obat = Obat::orderBy('created_at', 'desc')->get();
         $rekam_medis = Rekammedis::findorfail($id);
         $total_harga = collect($rekam_medis->resep->detailpengeluaran)->sum('total'); 
-        return view('apotik.edit', compact('rekam_medis','total_harga'));
+        return view('apotik.edit', compact('rekam_medis','total_harga','obat'));
     }
 
     /**
@@ -139,10 +152,15 @@ class ApotikController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $po = Pengeluaranobat::findorfail($id);
+        $po->delete();
+        return back()->withInput()->with('status', 'Berhasil Mengurangi Data');
     }
 
-    public function jumlahqty(Request $request, $id) {
-        
+    public function cek_data($id) {
+
+        $rekam_medis = Rekammedis::findorfail($id);
+        $total_harga = collect($rekam_medis->resep->detailpengeluaran)->sum('total'); 
+        return view('apotik.modal_detail', compact('rekam_medis','total_harga'))->renderSections()['modal'];
     }
 }

@@ -38,7 +38,7 @@ class ObatController extends Controller
             'keterangan'  => 'required',
         ]);
 
-        $gambar = $request->gambar;
+        // $gambar = $request->gambar;
         // $new_gambar = time().'.'.$gambar->getClientOriginalExtension();
 
         $obat = Obat::create([

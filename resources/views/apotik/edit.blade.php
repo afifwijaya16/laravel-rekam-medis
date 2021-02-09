@@ -1,6 +1,11 @@
 @extends('template_backend/home')
 @section('sub-breadcrumb', 'Data Detail')
 @section('content')
+<style>
+    .select2-container--default .select2-selection--multiple .select2-selection__choice {
+        background-color: #2980b9;
+    }
+</style>
 <div class="invoice p-3 mb-3">
     <div class="row">
         <div class="col-12">
@@ -13,23 +18,42 @@
     </div>
     <div class="row invoice-info">
         <div class="col-sm-4 invoice-col">
-
-        </div>
-        <div class="col-sm-4 invoice-col">
-
-        </div>
-        <div class="col-sm-4 invoice-col">
-            <b>Invoice #{{ $rekam_medis->no_rekam }}</b><br>
-            <br>
-            <b>Nama :</b> {{ $rekam_medis->pasien->nama_pasien }}<br>
+            <table class="table table-sm">
+                <tr>
+                    <td><b>Invoice</b></td>
+                    <td><b>#{{ $rekam_medis->no_rekam }}</b></td>
+                </tr>
+                <tr>
+                    <td><b>Nama</b></td>
+                    <td><b>{{ $rekam_medis->pasien->nama_pasien}}</b></td>
+                </tr>
+                <tr>
+                    <td><b>Tindakan</b></td>
+                    <td><b>{{ $rekam_medis->tindakan}}</b></td>
+                </tr>
+                <tr>
+                    <td><b>Catatan</b></td>
+                    <td><b>{{ $rekam_medis->catatan }}</b></td>
+                </tr>
+            </table>
+           
         </div>
     </div>
-
+    <div class="row mb-2">
+        <div class="col-12">
+            <button type="button" class="btn btn-sm btn-info float-right" title="Detail"
+                data-toggle="modal" data-target="#modal-tambah-obat" data-backdrop="static"
+                data-keyboard="false">
+                <i class="fa fa-plus"></i> Tambah Obat
+            </button>
+        </div>
+    </div>
     <div class="row">
         <div class="col-12 table-responsive">
-            <table class="table table-striped">
+            <table class="table table-sm table-striped">
                 <thead>
                     <tr>
+                        <th>Aksi</th>
                         <th>Nama Obat</th>
                         <th>Dosis</th>
                         <th>Satuan</th>
@@ -43,14 +67,25 @@
                 <tbody>
                     @foreach ($rekam_medis->resep->detailpengeluaran as $detail_resep)
                     <tr>
+                        <td>
+                            <form action="{{ route('apotik.destroy', $detail_resep->id) }}" id="form-delete-{{ $detail_resep->id}}" role="form"
+                                method="POST">
+                                @csrf
+                                @method('delete')
+                                <button class="btn btn-xs btn-danger" name="delete" type="submit"
+                                    onclick="deleteFunction({{ $detail_resep->id}})">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </form>
+                        </td>
                         <td>{{ $detail_resep->obat->nama }}</td>
                         <td>{{ $detail_resep->obat->dosis }}</td>
                         <td>{{ $detail_resep->obat->satuan }}</td>
                         <td>
                             @if($detail_resep->obat->stock == 0)
-                            <button class="btn btn-xs btn-danger">Stock Habis</button>
+                            <button class="btn btn-xs btn-danger" title="Stock Habis"><i class="fa fa-times"></i></button>
                             @else
-                            <button class="btn btn-xs btn-success">Ready Stock</button>
+                            <button class="btn btn-xs btn-success" title="Ready Stock"><i class="fa fa-check"></i></button>
                             @endif
                         </td>
                         <td>
@@ -100,7 +135,7 @@
         </div>
         <div class="col-6">
             <div class="table-responsive">
-                <table class="table">
+                <table class="table table-sm">
                     <tr>
                         <th style="width:50%">Subtotal:</th>
                         <td>Rp. {{ number_format($total_harga)}}</td>
@@ -120,14 +155,86 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="modal-tambah-obat" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Tambah Obat</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{{ route('apotik.store') }}" method="POST">
+                <div class="modal-body" style="max-height: calc(100vh - 210px);  overflow-y: auto;">
+                    @csrf
+                    <div class="form-group">
+                        <label>Obat</label>
+                        <input type="hidden" class="form-control" name="id_resep" value="{{ $rekam_medis->id_resep }}">
+                        <select name="id_obat" id="mySelect"
+                            class="js-example-basic-single form-control form-control-sm @error('id_obat') is-invalid @enderror">
+                            <option value="0" selected disabled>-- Pilih Obat --</option>
+                            @foreach ($obat as $result)
+                            <option value="{{ $result->id }}"
+                                {{ (collect(old('id_obat'))->contains($result->id)) ? 'selected':'' }}>
+                                {{ $result->nama }}
+                            </option>
+                            @endforeach
+                        </select>
+                        @error('id_obat')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="submit" class="btn btn-primary">Tambah</button>
+                    <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal"><i class="fa fa-times"></i>
+                        Tutup</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@push('js')
 @if (session('status'))
 <script>
     Swal.fire({
         icon: 'success',
-        title: '{{ session('
-        status ') }}',
+        title: '{{ session('status') }}',
     })
-
 </script>
 @endif
+<script>
+    $(document).ready(function () {
+        $('.js-example-basic-multiple').select2({
+            width: '100%'
+        });
+        $('.js-example-basic-single').select2({
+            width: '100%'
+        });
+    });
+    function deleteFunction($id) {
+        event.preventDefault();
+        const form = 'form-delete-' + $id;
+        Swal.fire({
+            title: 'Apakah anda yakin menghapus ini?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya',
+            cancelButtonText: 'Tidak'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById(form).submit();
+            }
+        }).catch((error) => {
+            console.log(error);
+        })
+    }
+</script>
+@endpush
 @endsection
