@@ -1,5 +1,5 @@
 @extends('template_backend/home')
-@section('sub-breadcrumb', 'Pasien')
+@section('sub-breadcrumb', 'Data Pasien')
 @section('content')
 <div class="row">
     <div class="col-12">

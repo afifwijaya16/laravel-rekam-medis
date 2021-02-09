@@ -106,8 +106,8 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <button class="btn btn-sm btn-primary">Simpan</button>
-                        <a href="{{ route('obat.index') }}" class="btn btn-warning btn-sm">Kembali</a>
+                        <button class="btn btn-sm btn-primary"><i class="fa fa-edit"></i> Perbarui</button>
+                        <a href="{{ route('obat.index') }}" class="btn btn-warning btn-sm"><i class="fa fa-arrow-left"></i> Kembali</a>
                     </div>
                 </form>
             </div>
