@@ -1,5 +1,5 @@
 @extends('template_backend/home')
-@section('sub-breadcrumb', 'Resep')
+@section('sub-breadcrumb', 'Data Resep')
 @section('content')
 <style>
     .select2-container--default .select2-selection--multiple .select2-selection__choice {
@@ -13,10 +13,10 @@
                 Data Resep
             </div>
             <div class="card-body">
-                <button type="button" class="btn btn-xs btn-info float-right" title="Detail"
+                <button type="button" class="btn btn-xs btn-primary float-right" title="Detail"
                     data-toggle="modal" data-target="#modal-tambah-resep" data-backdrop="static"
                     data-keyboard="false">
-                    <i class="fa fa-plus"> Tambah </i>
+                    <i class="fa fa-plus"></i> Tambah
                 </button>
             </div>
             <div class="card-body">
@@ -65,7 +65,7 @@
                     
                 </div>
                 <div class="modal-footer justify-content-between">
-                    <button type="submit" class="btn btn-primary">Tambah</button>
+                    <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Tambah</button>
                     <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal"><i class="fa fa-times"></i>
                         Tutup</button>
                 </div>
