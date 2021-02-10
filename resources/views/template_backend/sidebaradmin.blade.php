@@ -18,13 +18,13 @@
 </li>
 <li class="nav-item">
     <a href="{{ route('resep.index') }}" class="nav-link {{ request()->is('resep*') ? 'active' : '' }}">
-        <i class="fa fa-address-card nav-icon"></i>
+        <i class="fa fa-file-text nav-icon"></i>
         <p>Resep</p>
     </a>
 </li>
 <li class="nav-item">
     <a href="{{ route('registrasi.index') }}" class="nav-link {{ request()->is('registrasi') ? 'active' : '' }}">
-        <i class="fa fa-address-card nav-icon"></i>
+        <i class="fa fa-registered nav-icon"></i>
         <p>Registrasi</p>
     </a>
 </li>
