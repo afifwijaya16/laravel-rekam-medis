@@ -13,7 +13,7 @@ class Rekammedis extends Model
         'catatan_apoteker',
         'diagnosa',
         'tindakan',
-        'id_user',
+        'id_dokter',
         'status_rekam_medis',
         'id_resep',
         'total_pembayaran',
@@ -25,7 +25,7 @@ class Rekammedis extends Model
     }
 
     public function user(){
-        return $this->belongsTo('App\User', 'id_user');
+        return $this->belongsTo('App\User', 'id_dokter');
     }
 
     public function resep(){

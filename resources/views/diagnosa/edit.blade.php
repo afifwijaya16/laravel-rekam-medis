@@ -22,9 +22,7 @@
                                     <label class="control-label m-0"><strong>Data Dokter</strong></label>
                                 </div>
                             </div>
-                            <!-- id dokter -->
-                            <input type="hidden" class="form-control form-control-sm" name="id_dokter"
-                                value="{{ Auth::user()->id }}">
+                           
                             <table class="table table-sm table-bordered table-striped">
                                 <tr>
                                     <td>Nama Dokter</td>
@@ -90,7 +88,9 @@
                                     <label class="control-label m-0"><strong>Tindakan</strong></label>
                                 </div>
                             </div>
-
+                            <!-- id dokter -->
+                            <input type="hidden" class="form-control form-control-sm" name="id_dokter"
+                                value="{{ Auth::user()->id }}">
                             <div class="row">
                                 <div class="col-10">
                                     <div class="form-group">

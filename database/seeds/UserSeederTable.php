@@ -31,6 +31,7 @@ class UserSeederTable extends Seeder
             'password'  => bcrypt('rahasia'),
             'level' => 'Dokter',
             'Spesialis' => 'THT',
+        	'biaya_tindakan'  => '50000',
         ]);
     }
 }

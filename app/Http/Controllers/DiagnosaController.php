@@ -102,6 +102,7 @@ class DiagnosaController extends Controller
 
         $rekam_medis_data = [
             'id_resep' => $request->id_resep,
+            'id_dokter' => $request->id_dokter,
             'tindakan' => $request->tindakan,
             'catatan' => $request->catatan,
             'diagnosa' => $request->diagnosa,

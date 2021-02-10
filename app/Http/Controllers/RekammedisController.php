@@ -58,4 +58,11 @@ class RekammedisController extends Controller
 
     }
 
+    public function cek_data($id) {
+
+        $rekam_medis = Rekammedis::findorfail($id);
+        $total_harga = collect($rekam_medis->resep->detailpengeluaran)->sum('total'); 
+        return view('rekam_medis.modal_detail', compact('rekam_medis','total_harga'))->renderSections()['modal'];
+    }
+
 }

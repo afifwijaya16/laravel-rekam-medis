@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('spesialis')->nullable();
             $table->string('alamat')->nullable();
             $table->date('tanggal_lahir')->nullable();
+            $table->integer('biaya_tindakan')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

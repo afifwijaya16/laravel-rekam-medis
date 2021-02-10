@@ -35,4 +35,6 @@ Route::resource('/diagnosa','DiagnosaController')->names('diagnosa');
 Route::resource('/resep','ResepController')->names('resep');
 Route::resource('/apotik','ApotikController')->names('apotik');
 Route::get('apotik/cek_data/{id}','ApotikController@cek_data')->name('cek_data');
+Route::get('rekam_medis/cek_data_rekam_medis/{id}','RekammedisController@cek_data')->name('cek_data_rekam_medis');
+
 Route::post('/tambah_resep_obat','DiagnosaController@tambah_resep_obat')->name('tambah_resep_obat');

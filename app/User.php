@@ -24,6 +24,7 @@ class User extends Authenticatable
         'spesialis',
         'alamat',
         'tanggal_lahir',
+        'biaya_tindakan',
     ];
 
     /**
@@ -43,4 +44,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function rekammedis(){
+        return $this->belongsTo('App\Rekammedis');
+    }
 }

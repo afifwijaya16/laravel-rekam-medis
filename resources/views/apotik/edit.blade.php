@@ -48,6 +48,10 @@
                     <td><b>Catatan</b></td>
                     <td><b>{{ $rekam_medis->catatan }}</b></td>
                 </tr>
+                <tr>
+                    <td><b>Dokter</b></td>
+                    <td><b>{{ $rekam_medis->user->name }}</b></td>
+                </tr>
             </table>
            
         </div>
@@ -150,8 +154,16 @@
             <div class="table-responsive">
                 <table class="table table-sm">
                     <tr>
+                        <th style="width:50%">Tindakan:</th>
+                        <td>Rp. {{ number_format(Auth::user()->biaya_tindakan) }}</td>
+                    </tr>
+                    <tr>
                         <th style="width:50%">Subtotal:</th>
                         <td>Rp. {{ number_format($total_harga)}}</td>
+                    </tr>
+                    <tr>
+                        <th style="width:50%">Total Biaya:</th>
+                        <td>Rp. {{ number_format($total_harga + Auth::user()->biaya_tindakan)}}</td>
                     </tr>
                 </table>
             </div>
@@ -162,7 +174,7 @@
             <form action="{{ route('apotik.update', $rekam_medis->id) }}" method="POST">
                 @csrf
                 @method('put')
-                <input type="hidden" class="form-control" name="total_pembayaran" value="{{ $total_harga }}">
+                <input type="hidden" class="form-control" name="total_pembayaran" value="{{ $total_harga + Auth::user()->biaya_tindakan }}">
                 <button type="submit" value="submit_pembayaran" class="btn btn-success float-right" name="submitbutton"><i class="far fa-credit-card"></i> Check Out
                 </button>
             </form>

@@ -39,6 +39,7 @@ class DokterController extends Controller
             'password' => 'required',
             'alamat' => 'required',
             'tanggal_lahir' => 'required',
+            'biaya_tindakan' => 'required',
             
         ]);
 
@@ -49,6 +50,7 @@ class DokterController extends Controller
             'spesialis' => $request->spesialis,
             'alamat' => $request->alamat,
             'tanggal_lahir' => $request->tanggal_lahir,
+            'biaya_tindakan' => $request->biaya_tindakan,
             'password' => bcrypt($request->password),
             'level' => 'Dokter'
         ]);
@@ -76,6 +78,7 @@ class DokterController extends Controller
             'spesialis' => 'required',
             'alamat' => 'required',
             'tanggal_lahir' => 'required',
+            'biaya_tindakan' => 'required',
         ]);
 
         $dokter = User::findorfail($id);
@@ -88,6 +91,7 @@ class DokterController extends Controller
                 'spesialis' => $request->spesialis,
                 'alamat' => $request->alamat,
                 'tanggal_lahir' => $request->tanggal_lahir,
+                'biaya_tindakan' => $request->biaya_tindakan,
                 'password' => bcrypt($request->password),
             ];
         } else {
@@ -98,6 +102,7 @@ class DokterController extends Controller
                 'spesialis' => $request->spesialis,
                 'alamat' => $request->alamat,
                 'tanggal_lahir' => $request->tanggal_lahir,
+                'biaya_tindakan' => $request->biaya_tindakan,
             ];
         }
 

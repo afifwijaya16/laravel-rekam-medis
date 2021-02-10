@@ -68,11 +68,24 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label>Email</label>
+                                <label>biaya_tindakan</label>
                                 <input type="text"
                                     class="form-control form-control-sm @error('email') is-invalid @enderror"
                                     value="{{ $dokter->email }}" name="email" placeholder="Masukan Email">
                                 @error('email')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Biaya Tindakan</label>
+                                <input type="number"
+                                    class="form-control form-control-sm @error('biaya_tindakan') is-invalid @enderror"
+                                    value="{{ $dokter->biaya_tindakan }}" name="biaya_tindakan" placeholder="Masukan Biaya Tindakan">
+                                @error('biaya_tindakan')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
