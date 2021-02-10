@@ -95,4 +95,15 @@
         </div>
     </div>
 </div>
+@push('js')
+    @if (session('status'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: '{{ session('status') }}',
+        })
+    </script>
+    @endif
+@endpush
+
 @endsection
