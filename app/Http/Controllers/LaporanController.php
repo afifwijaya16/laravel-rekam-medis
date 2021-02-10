@@ -42,4 +42,20 @@ class LaporanController extends Controller
         $total_harga = collect($rekam_medis->resep->detailpengeluaran)->sum('total'); 
         return view('laporan.modal_laporan_pengunjung', compact('rekam_medis','total_harga'))->renderSections()['modal'];
     }
+
+    public function laporan_pengeluaran_obat() {
+        return view('laporan.laporan_pengeluaran_obat');
+    }
+
+    public function filter_laporan_pengeluaran_obat(Request $request) {
+        $fromDate = $request->tanggal_sekarang;
+        $toDate   = $request->tanggal_mendatang;
+        $pengeluaran_obat = Pengeluaranobat::whereRaw("(updated_at >= ? AND updated_at <= ?)", 
+            [$fromDate." 00:00:00", $toDate." 23:59:59"]
+        )->get();
+        $pengeluaran_obat_total = Pengeluaranobat::whereRaw("(updated_at >= ? AND updated_at <= ?)", 
+            [$fromDate." 00:00:00", $toDate." 23:59:59"]
+        )->sum('total');
+        return view('laporan.laporan_pengeluaran_obat', compact('pengeluaran_obat','pengeluaran_obat_total'));
+    }
 }
