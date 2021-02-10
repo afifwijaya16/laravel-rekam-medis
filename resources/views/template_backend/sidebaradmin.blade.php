@@ -46,6 +46,12 @@
         <p>Rekam Medis</p>
     </a>
 </li>
+<li class="nav-item">
+    <a href="{{ route('laporan_pengunjung') }}" class="nav-link {{ request()->is('laporan_pengunjung*') ? 'active' : '' }}">
+        <i class="fa fa-file nav-icon"></i>
+        <p>Laporan Pengunjung</p>
+    </a>
+</li>
 <!-- <li class="nav-item">
     <a href="{{ url('/test') }}" class="nav-link">
         <i class="fa fa-address-card nav-icon"></i>
