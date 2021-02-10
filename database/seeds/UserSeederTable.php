@@ -24,5 +24,13 @@ class UserSeederTable extends Seeder
             'password'  => bcrypt('rahasia'),
             'level' => 'user',
         ]);
+
+        DB::table('users')->insert([
+        	'name'  => 'Dr Wahyu Malawi',
+            'email' => 'wahyu@gmail.com',
+            'password'  => bcrypt('rahasia'),
+            'level' => 'Dokter',
+            'Spesialis' => 'THT',
+        ]);
     }
 }
