@@ -7,6 +7,7 @@
                 <th width="10%">harga</th>
                 <th width="5%">Stock</th>
                 <th width="5%">Dosis</th>
+                <th width="5%">Status</th>
                 <th width="25%">Aksi</th>
             </tr>
         </thead>
@@ -18,6 +19,13 @@
                 <td class="text-center">{{ $hasil->harga }}</td>
                 <td class="text-center">{{ $hasil->stock }}</td>
                 <td class="text-center">{{ $hasil->dosis }}</td>
+                <td class="text-center">
+                    @if($hasil->stock == 0)
+                        <button class="btn btn-xs btn-danger" title="Stock Habis"><i class="fa fa-times"></i></button>
+                    @else
+                        <button class="btn btn-xs btn-success" title="Ready Stock"><i class="fa fa-check"></i></button>
+                    @endif
+                </td>
                 <td class="text-center">
                     <form action="{{ route('obat.destroy', $hasil->id) }}" id="form-delete-{{ $hasil->id}}" role="form"
                         method="POST">

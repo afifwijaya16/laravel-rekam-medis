@@ -51,6 +51,7 @@
                                 <th>Nama Obat</th>
                                 <th>Satuan</th>
                                 <th>Qty</th>
+                                <th>Tanggal Keluar</th>
                                 <th>Total</th>
                             </tr>
                         </thead>
@@ -63,12 +64,13 @@
                                     <td class="text-center">{{ $hasil->obat->nama }}</td>
                                     <td class="text-center">{{ $hasil->obat->satuan }}</td>
                                     <td class="text-center">{{ $hasil->qty }}</td>
+                                    <td class="text-center">{{ Carbon\Carbon::parse($hasil->updated_at)->translatedFormat('d F Y (H:i)') }}</td>
                                     <td class="text-center">Rp. {{ number_format($hasil->total) }}</td>
                                 </tr>
                                 @endforeach
                                 <tr>
                                     @if(!empty($pengeluaran_obat_total))
-                                    <td class="text-right" colspan="5"><b>Sub Total</b></td>
+                                    <td class="text-right" colspan="6"><b>Sub Total</b></td>
                                     <td class="text-center">Rp. {{ number_format($pengeluaran_obat_total) }}</td>
                                     @endif
                                 </tr>
