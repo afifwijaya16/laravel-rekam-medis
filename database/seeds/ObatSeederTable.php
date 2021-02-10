@@ -24,7 +24,7 @@ class ObatSeederTable extends Seeder
         ]);
 
         DB::table('obats')->insert([
-        	'nomor_obat'  => time(),
+        	'nomor_obat'  => time() + 1,
         	'nama'  => 'Betadine',
         	'harga'  => '8500',
         	'stock'  => '20',

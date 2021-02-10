@@ -3,6 +3,7 @@
         <thead>
             <tr>
                 <th width="5%">No</th>
+                <th width="40%">No obat</th>
                 <th width="40%">Nama Obat</th>
                 <th width="10%">harga</th>
                 <th width="5%">Stock</th>
@@ -15,6 +16,7 @@
             @foreach ($obat as $result => $hasil)
             <tr class="table-sm">
                 <td class="text-center">{{ $loop->iteration }}</td>
+                <td class="text-center">{{ $hasil->nomor_obat }}</td>
                 <td class="text-center">{{ $hasil->nama }}</td>
                 <td class="text-center">{{ $hasil->harga }}</td>
                 <td class="text-center">{{ $hasil->stock }}</td>
@@ -29,13 +31,15 @@
                 <td class="text-center">
                     <form action="{{ route('obat.destroy', $hasil->id) }}" id="form-delete-{{ $hasil->id}}" role="form"
                         method="POST">
-                        <a href="{{ route('obat.edit', $hasil-> id) }}" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>
                         @csrf
                         @method('delete')
-                        <button class="btn btn-sm btn-danger" name="delete" type="submit"
-                            onclick="deleteFunction({{ $hasil->id}})">
-                            <i class="fa fa-trash"></i>
-                        </button>
+                        <div class="btn-group">
+                            <a href="{{ route('obat.edit', $hasil-> id) }}" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>
+                            <button class="btn btn-sm btn-danger" name="delete" type="submit"
+                                onclick="deleteFunction({{ $hasil->id}})">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </div>
                     </form>
                 </td>
             </tr>
