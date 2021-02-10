@@ -30,7 +30,7 @@ class UserSeederTable extends Seeder
             'email' => 'wahyu@gmail.com',
             'password'  => bcrypt('rahasia'),
             'level' => 'Dokter',
-            'Spesialis' => 'THT',
+            'spesialis' => 'THT',
         	'biaya_tindakan'  => '50000',
         ]);
     }
