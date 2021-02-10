@@ -21,8 +21,8 @@ class ApotikController extends Controller
     public function index()
     {
         $rekam_medis = Rekammedis::where('status_rekam_medis', 'Selesai Pemeriksaan')->orderBy('updated_at', 'asc')->get();
-        $rekam_medis_telah_bayar = Rekammedis::where('status_rekam_medis', 'Telah Bayar')->orderBy('updated_at', 'asc')->get();
-        return view('apotik.index', compact('rekam_medis','rekam_medis_telah_bayar'));
+        $rekam_medis_cek_apoteker = Rekammedis::where('status_rekam_medis', 'Telah Di Cek Apoteker')->orderBy('updated_at', 'asc')->get();
+        return view('apotik.index', compact('rekam_medis','rekam_medis_cek_apoteker'));
     }
 
     /**
@@ -135,7 +135,7 @@ class ApotikController extends Controller
             $rekam = Rekammedis::findorfail($id);
             $rekam_data = [
                 'total_pembayaran' => $request->total_pembayaran,
-                'status_rekam_medis' => 'Telah Bayar'
+                'status_rekam_medis' => 'Telah Di Cek Apoteker'
             ];
             $rekam->update($rekam_data);
             return redirect()->route('apotik.index')->with('status', 'Data Berhasil disimpan');

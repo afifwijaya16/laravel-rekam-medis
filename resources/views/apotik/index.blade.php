@@ -35,11 +35,11 @@
         </div>
         <div class="card">
             <div class="card-header">
-                Data Telah Membayar Obat
+                Data Obat Sudah dapat di ambil di bagian Apoteker
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table id="dataTable" class="table table-sm table-bordered table-striped" width="100%">
+                    <table id="dataTable-0" class="table table-sm table-bordered table-striped" width="100%">
                         <thead>
                             <tr>
                                 <th width="5%">No</th>
@@ -49,7 +49,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($rekam_medis_telah_bayar as $result => $hasil)
+                            @foreach ($rekam_medis_cek_apoteker as $result => $hasil)
                             <tr class="table-sm">
                                 <td class="text-center">{{ $loop->iteration }}</td>
                                 <td class="text-center">{{ $hasil->no_rekam }}</td>

@@ -39,7 +39,7 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table id="dataTable" class="table table-sm table-bordered table-striped" width="100%">
+                    <table id="dataTable-0" class="table table-sm table-bordered table-striped" width="100%">
                         <thead>
                             <tr>
                                 <th width="5%">No</th>
@@ -69,13 +69,13 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table id="dataTable" class="table table-sm table-bordered table-striped" width="100%">
+                    <table id="dataTable-1" class="table table-sm table-bordered table-striped" width="100%">
                         <thead>
                             <tr>
                                 <th width="5%">No</th>
                                 <th width="30%">No Registrasi</th>
                                 <th width="30%">Nama Pasien</th>
-                                <th width="25%">Aksi</th>
+                                <th width="25%">Pemeriksa</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -85,7 +85,7 @@
                                 <td class="text-center">{{ $hasil->no_rekam }}</td>
                                 <td class="text-center">{{ $hasil->pasien->nama_pasien }}</td>
                                 <td class="text-center">
-                                    <a href="{{ route('diagnosa.edit', $hasil-> id) }}" class="btn btn-xs btn-warning"><i class="fa fa-edit"></i>Cek Pasien</a>
+                                    {{ $hasil->user->name }}
                                 </td>
                             </tr>
                             @endforeach
