@@ -43,9 +43,10 @@
                         <thead>
                             <tr>
                                 <th width="5%">No</th>
-                                <th width="30%">No Registrasi</th>
-                                <th width="30%">Nama Pasien</th>
-                                <th width="25%">Aksi</th>
+                                <th>No Registrasi</th>
+                                <th>Nama Pasien</th>
+                                <th>Dokter</th>
+                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -53,9 +54,12 @@
                             <tr class="table-sm">
                                 <td class="text-center">{{ $loop->iteration }}</td>
                                 <td class="text-center">{{ $hasil->no_rekam }}</td>
+                                <td class="text-center">{{ $hasil->user->name}}</td>
                                 <td class="text-center">{{ $hasil->pasien->nama_pasien }}</td>
                                 <td class="text-center">
-                                    <a href="{{ route('diagnosa.edit', $hasil-> id) }}" class="btn btn-xs btn-warning"><i class="fa fa-edit"></i>Cek Pasien</a>
+                                    @if($hasil->user->id == Auth::user()->id)
+                                        <a href="{{ route('diagnosa.edit', $hasil-> id) }}" class="btn btn-xs btn-warning"><i class="fa fa-edit"></i>Cek Pasien</a>
+                                    @endif
                                 </td>
                             </tr>
                             @endforeach

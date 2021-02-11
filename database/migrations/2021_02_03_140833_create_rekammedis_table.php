@@ -26,6 +26,8 @@ class CreateRekammedisTable extends Migration
             $table->string('id_resep')->nullable();
             $table->integer('total_pembayaran')->nullable();
             $table->string('status_rekam_medis');
+            $table->boolean('status_pembayaran')->default(0);
+            $table->string('id_kasir')->nullable();
             $table->timestamps();
         });
     }

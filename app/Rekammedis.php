@@ -18,6 +18,8 @@ class Rekammedis extends Model
         'id_resep',
         'total_pembayaran',
         'catatan',
+        'status_pembayaran',
+        'id_kasir',
     ];
 
     public function pasien(){
@@ -26,6 +28,10 @@ class Rekammedis extends Model
 
     public function user(){
         return $this->belongsTo('App\User', 'id_dokter');
+    }
+
+    public function kasir(){
+        return $this->belongsTo('App\User', 'id_kasir');
     }
 
     public function resep(){
