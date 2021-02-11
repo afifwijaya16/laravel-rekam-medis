@@ -28,6 +28,7 @@ Route::resource('/dokter','DokterController');
 Route::resource('/registrasi','RegistrasiController')->names('registrasi');
 Route::get('/cek_pasien/{id}','RegistrasiController@cek_pasien')->name('cek_pasien');
 Route::resource('/diagnosa','DiagnosaController')->names('diagnosa');
+Route::get('diagnosa/cek_data/{id}','DiagnosaController@cek_data')->name('diagnosa.cek_data');
 Route::resource('/resep','ResepController')->names('resep');
 Route::resource('/apotik','ApotikController')->names('apotik');
 Route::resource('/pembayaran','PembayaranController')->names('pembayaran');

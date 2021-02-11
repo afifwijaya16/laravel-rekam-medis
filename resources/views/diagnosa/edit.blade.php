@@ -22,7 +22,7 @@
                                     <label class="control-label m-0"><strong>Data Dokter</strong></label>
                                 </div>
                             </div>
-                           
+
                             <table class="table table-sm table-bordered table-striped">
                                 <tr>
                                     <td>Nama Dokter</td>
@@ -96,7 +96,8 @@
                                     <div class="form-group">
                                         <label>Pilih Resep</label>
                                         <select name="id_resep" id="mySelect"
-                                            class="js-example-basic-single form-control form-control-sm @error('id_resep') is-invalid @enderror">
+                                            class="js-example-basic-single form-control form-control-sm @error('id_resep') is-invalid @enderror"
+                                            onchange="myFunction()">
                                             <option value="0" selected disabled>-- Pilih Resep --</option>
                                             @foreach ($resep as $result)
                                             <option value="{{ $result->id }}"
@@ -115,6 +116,7 @@
 
                                 <div class="col-2">
                                     <div class="form-group">
+
                                         <label> &nbsp;</label>
                                         <br>
                                         <button type="button" class="btn btn-sm btn-info" title="Detail"
@@ -125,6 +127,7 @@
                                     </div>
                                 </div>
                             </div>
+
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
@@ -187,7 +190,28 @@
     </div>
 </div>
 </div>
+<div class="modal fade" id="modal-detail-obat" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Detail Obat</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
 
+            <div class="modal-body" style="max-height: calc(100vh - 210px);  overflow-y: auto;">
+
+
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Tambah</button>
+                <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal"><i class="fa fa-times"></i>
+                    Tutup</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="modal fade" id="modal-tambah-resep" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

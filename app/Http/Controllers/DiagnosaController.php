@@ -166,4 +166,11 @@ class DiagnosaController extends Controller
         return back()->withInput()->with('status', 'Berhasil Menambah Data');
     }
 
+    public function cek_data($id) {
+
+        $detail_resep = Detailresep::where('id_resep',$id);
+        var_dump($detail_resep);die;
+        return view('detail.modal_detail', compact('detail_resep'))->renderSections()['modal'];
+    }
+
 }

@@ -48,7 +48,7 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table id="dataTable" class="table table-sm table-bordered table-striped" width="100%">
+                    <table id="dataTable-0" class="table table-sm table-bordered table-striped" width="100%">
                         <thead>
                             <tr>
                                 <th width="5%">No</th>
