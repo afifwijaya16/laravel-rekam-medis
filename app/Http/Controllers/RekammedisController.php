@@ -38,7 +38,7 @@ class RekammedisController extends Controller
     public function show($id)
     {
         $pasien = Pasien::findorfail($id);
-        $rekam_medis = Rekammedis::where('id_pasien', $id)->where('status_rekam_medis', 'Telah Di Cek Apoteker')->orderBy('updated_at', 'desc')->get();;
+        $rekam_medis = Rekammedis::where('id_pasien', $id)->where('status_rekam_medis', 'Telah Di Cek Apoteker')->orderBy('updated_at', 'desc')->get();
 
         return view('rekam_medis.detail', compact('pasien','rekam_medis'));
     }

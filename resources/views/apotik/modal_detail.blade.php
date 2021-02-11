@@ -42,7 +42,6 @@
                     <td><b>{{ $rekam_medis->user->name }}</b></td>
                 </tr>
             </table>
-           
         </div>
     </div>
     <div class="row">
