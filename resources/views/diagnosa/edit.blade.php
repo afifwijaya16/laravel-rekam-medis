@@ -97,7 +97,7 @@
                                         <label>Pilih Resep</label>
                                         <select name="id_resep" id="mySelect"
                                             class="js-example-basic-single form-control form-control-sm @error('id_resep') is-invalid @enderror"
-                                            onchange="myFunction()">
+                                            onchange="getval(this);">
                                             <option value="0" selected disabled>-- Pilih Resep --</option>
                                             @foreach ($resep as $result)
                                             <option value="{{ $result->id }}"
@@ -126,6 +126,9 @@
                                         </button>
                                     </div>
                                 </div>
+                                <!-- <div class="col-md-12">
+                                    <a href="#" class="btn btn-xs btn-info d-none" id="showData" data-id=""><i class="fa fa-eye"></i> Cek Obat</a>
+                                </div> -->
                             </div>
 
                             <div class="row">
@@ -184,11 +187,10 @@
                             </div>
                         </div>
                     </div>
+                </form>
             </div>
-            </form>
         </div>
     </div>
-</div>
 </div>
 <div class="modal fade" id="modal-detail-obat" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -264,6 +266,32 @@
     </div>
 </div>
 
+<div class="modal fade show" id="modal-detail">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Detail Data Resep</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="max-height: calc(100vh - 210px);  overflow-y: auto;">
+                <div class="row">
+                    <div class="card-body">
+                        <div id="data_modal">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal"><i class="fa fa-times"></i>
+                    Tutup</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 @push('js')
 <script>
     $(document).ready(function () {
@@ -274,7 +302,20 @@
             width: '100%'
         });
     });
-
+    function getval(selection) {
+        a = selection.value;
+        // console.log(a);
+        // document.getElementById('showData').classList.remove("d-none");
+        var url = "{{ route('diagnosa.show', ':id_data') }}";
+        url = url.replace(":id_data", a);
+        // document.getElementById("showData").href = url;
+        $('#modal-detail').modal('show');
+        $.get(url, function (data) {
+            $('#modal-detail').modal('show');
+            $("#data_modal").html(data); //replace load to html
+        })
+    }
+    
 </script>
 @endpush
 @endsection

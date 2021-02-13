@@ -29,10 +29,10 @@ class LaporanController extends Controller
 
         $rekam_medis = Rekammedis::whereRaw("(created_at >= ? AND created_at <= ?)", 
             [$fromDate." 00:00:00", $toDate." 23:59:59"]
-        )->get();
+        )->where('status_pembayaran', '1')->get();
         $rekam_medis_count = Rekammedis::whereRaw("(created_at >= ? AND created_at <= ?)", 
             [$fromDate." 00:00:00", $toDate." 23:59:59"]
-        )->get()->count();;
+        )->where('status_pembayaran', '1')->get()->count();;
 
         return view('laporan.laporan_pengunjung', compact('rekam_medis','rekam_medis_count'));
     }
@@ -57,5 +57,21 @@ class LaporanController extends Controller
             [$fromDate." 00:00:00", $toDate." 23:59:59"]
         )->sum('total');
         return view('laporan.laporan_pengeluaran_obat', compact('pengeluaran_obat','pengeluaran_obat_total'));
+    }
+
+    public function laporan_pendapatan() {
+        return view('laporan.laporan_pendapatan');
+    }
+
+    public function filter_laporan_pendapatan(Request $request) {
+        $fromDate = $request->tanggal_sekarang;
+        $toDate   = $request->tanggal_mendatang;
+        $pendapatan = Rekammedis::whereRaw("(updated_at >= ? AND updated_at <= ?)", 
+            [$fromDate." 00:00:00", $toDate." 23:59:59"]
+        )->where('status_pembayaran', '1')->get();
+        $pendapatan_total = Rekammedis::whereRaw("(updated_at >= ? AND updated_at <= ?)", 
+            [$fromDate." 00:00:00", $toDate." 23:59:59"]
+        )->where('status_pembayaran', '1')->sum('total_pembayaran');
+        return view('laporan.laporan_pendapatan', compact('pendapatan','pendapatan_total'));
     }
 }

@@ -72,7 +72,10 @@
                                 <td class="text-center">{{ $hasil->user->name }}</td>
                                 <td class="text-center">{{ Carbon\Carbon::parse($hasil->created_at)->translatedFormat('d F Y') }}</td>
                                 <td class="text-center">
-                                    <a href="#" id="showData" class="btn btn-xs btn-primary" data-id="{{ $hasil->id }}"><i class="fa fa-eye"></i></a>
+                                   <div class="btn-group">
+                                        <a href="#" id="showData" class="btn btn-xs btn-primary" data-id="{{ $hasil->id }}"><i class="fa fa-eye"></i></a>
+                                        <a href="{{ route('pembayaran.show', $hasil-> id) }}" target="_blank" class="btn btn-sm btn-warning"><i class="fa fa-print"></i></a>
+                                   </div>
                                 </td>
                             </tr>
                             @endforeach

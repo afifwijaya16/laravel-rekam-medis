@@ -46,6 +46,7 @@
                                 <th width="5%">No</th>
                                 <th width="30%">No Registrasi</th>
                                 <th width="30%">Nama Pasien</th>
+                                <th>Status</th>
                                 <th width="30%">Aksi</th>
                             </tr>
                         </thead>
@@ -55,6 +56,13 @@
                                 <td class="text-center">{{ $loop->iteration }}</td>
                                 <td class="text-center">{{ $hasil->no_rekam }}</td>
                                 <td class="text-center">{{ $hasil->pasien->nama_pasien }}</td>
+                                <td class="text-center">
+                                     @if($hasil->status_pembayaran == 0)
+                                        <button class="btn btn-xs btn-danger" title="Belum Dibayar"><i class="fa fa-times"></i></button>
+                                    @else
+                                        <button class="btn btn-xs btn-success" title="Sudah Dibayar"><i class="fa fa-check"></i></button>
+                                    @endif
+                                </td>
                                 <td class="text-center">
                                     <a href="#" id="showData" class="btn btn-xs btn-primary" data-id="{{ $hasil->id }}"><i class="fa fa-eye"></i></a>
                                     <a href="{{ route('apotik.edit', $hasil-> id) }}" class="btn btn-xs btn-warning"><i class="fa fa-edit"></i></a>

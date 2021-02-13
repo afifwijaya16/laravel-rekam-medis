@@ -46,3 +46,6 @@ Route::get('/laporan_pengunjung/cek_data/{id}','LaporanController@cek_data')->na
 // laporan pengeluaran obat
 Route::get('/laporan_pengeluaran_obat', 'LaporanController@laporan_pengeluaran_obat')->name('laporan_pengeluaran_obat');
 Route::get('/laporan_pengeluaran_obat/filter', 'LaporanController@filter_laporan_pengeluaran_obat')->name('laporan_pengeluaran_obat.filter');
+// laporan pendapatan
+Route::get('/laporan_pendapatan', 'LaporanController@laporan_pendapatan')->name('laporan_pendapatan');
+Route::get('/laporan_pendapatan/filter', 'LaporanController@filter_laporan_pendapatan')->name('laporan_pendapatan.filter');

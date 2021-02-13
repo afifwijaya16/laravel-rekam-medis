@@ -56,7 +56,9 @@ class DiagnosaController extends Controller
      */
     public function show($id)
     {
-        //
+        $resep = Resep::with('detailreseps')->find($id);
+        $obat = Obat::orderBy('created_at', 'desc')->get();
+        return view('diagnosa.modal_detail_resep', compact('resep'))->renderSections()['modal'];
     }
 
     /**

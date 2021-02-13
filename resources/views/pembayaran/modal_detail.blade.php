@@ -88,7 +88,7 @@
                             <table class="table table-sm">
                                 <tr>
                                     <th style="width:50%">Tindakan:</th>
-                                    <td>Rp. {{ number_format(Auth::user()->biaya_tindakan) }}</td>
+                                    <td>Rp. {{ number_format($rekam_medis->user->biaya_tindakan) }}</td>
                                 </tr>
                                 <tr>
                                     <th style="width:50%">Subtotal:</th>
@@ -96,7 +96,7 @@
                                 </tr>
                                 <tr>
                                     <th style="width:50%">Total Biaya:</th>
-                                    <td>Rp. {{ number_format($total_harga + Auth::user()->biaya_tindakan)}}</td>
+                                    <td>Rp. {{ number_format($total_harga + $rekam_medis->user->biaya_tindakan)}}</td>
                                 </tr>
                             </table>
                         </div>

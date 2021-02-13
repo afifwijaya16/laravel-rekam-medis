@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Rekammedis;
+use App\Resep;
 use Auth;
 class PembayaranController extends Controller
 {
@@ -54,7 +55,9 @@ class PembayaranController extends Controller
      */
     public function show($id)
     {
-        //
+        $rekam_medis = Rekammedis::findorfail($id);
+        $total_harga = collect($rekam_medis->resep->detailpengeluaran)->sum('total');
+        return view('pembayaran.cetak',compact('rekam_medis','total_harga'));
     }
 
     /**

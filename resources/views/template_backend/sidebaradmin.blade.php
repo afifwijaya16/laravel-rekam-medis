@@ -64,6 +64,12 @@
         <p>Laporan Pengeluaran Obat</p>
     </a>
 </li>
+<li class="nav-item">
+    <a href="{{ route('laporan_pendapatan') }}" class="nav-link {{ request()->is('laporan_pendapatan*') ? 'active' : '' }}">
+        <i class="fa fa-file nav-icon"></i>
+        <p>Laporan Pendapatan</p>
+    </a>
+</li>
 <!-- <li class="nav-item">
     <a href="{{ url('/test') }}" class="nav-link">
         <i class="fa fa-address-card nav-icon"></i>
