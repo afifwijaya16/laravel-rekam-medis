@@ -13,7 +13,11 @@
             @foreach ($rekam_medis as $result => $hasil)
             <tr class="table-sm">
                 <td class="text-center">{{ $loop->iteration }}</td>
-                <td class="text-center">{{ $hasil->no_rekam }}</td>
+                <td class="text-center">
+                    <img src="data:image/png;base64,{{DNS2D::getBarcodePNG($hasil->no_rekam, 'QRCODE')}}" alt="barcode" />
+                    <br>
+                    {{ $hasil->no_rekam }}
+                </td>
                 <td class="text-center">{{ $hasil->pasien->nama_pasien }}</td>
                 <td class="text-center">
                     @if($hasil->status_rekam_medis == 'Antri')

@@ -14,7 +14,11 @@
             @foreach ($pasien as $result => $hasil)
             <tr class="table-sm">
                 <td class="text-center">{{ $loop->iteration }}</td>
-                <td class="text-center">{{ $hasil->nomor_pasien }}</td>
+                <td class="text-center">
+                    <img src="data:image/png;base64,{{DNS2D::getBarcodePNG($hasil->nomor_pasien, 'QRCODE')}}" alt="barcode" />
+                    <br>
+                    {{ $hasil->nomor_pasien }}
+                </td>
                 <td class="text-center">{{ $hasil->nama_pasien }}</td>
                 <td class="text-center">{{ $hasil->alamat }}</td>
                 <td class="text-center">{{ $hasil->telepon }}</td>
