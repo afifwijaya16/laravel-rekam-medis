@@ -19,19 +19,25 @@ class UserSeederTable extends Seeder
         ]);
 
         DB::table('users')->insert([
-            'name'  => 'user',
-            'email' => 'user@gmail.com',
-            'password'  => bcrypt('rahasia'),
-            'level' => 'user',
-        ]);
-
-        DB::table('users')->insert([
-        	'name'  => 'Dr Wahyu Malawi',
-            'email' => 'wahyu@gmail.com',
-            'password'  => bcrypt('rahasia'),
+        	'name'  => 'Dokter 1',
+            'email' => 'dokter@gmail.com',
+            'password'  => bcrypt('dokter@gmail.com'),
             'level' => 'Dokter',
             'spesialis' => 'THT',
         	'biaya_tindakan'  => '50000',
+        ]);
+
+        DB::table('users')->insert([
+        	'name'  => 'Kasir 1',
+            'email' => 'kasir@gmail.com',
+            'password'  => bcrypt('kasir@gmail.com'),
+            'level' => 'Kasir',
+        ]);
+        DB::table('users')->insert([
+        	'name'  => 'Apoteker 1',
+            'email' => 'apoteker@gmail.com',
+            'password'  => bcrypt('apoteker@gmail.com'),
+            'level' => 'Apoteker',
         ]);
     }
 }

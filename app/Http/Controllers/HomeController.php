@@ -3,6 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Pasien;
+use App\Rekammedis;
+use App\Resep;
+use App\Obat;
+use App\Detailresep;
+use App\Pengeluaranobat;
+use App\User;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -23,6 +31,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $obat = Obat::count();
+        $dokter = User::where('level','Dokter')->count();
+        $pasien = Pasien::count();
+        return view('home',
+            compact(
+                'obat',
+                'dokter',
+                'pasien',
+            )
+        );
     }
 }
