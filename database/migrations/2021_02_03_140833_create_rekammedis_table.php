@@ -15,7 +15,7 @@ class CreateRekammedisTable extends Migration
     {
         Schema::create('rekammedis', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('no_rekam');                      
+            $table->text('no_rekam');                      
             $table->string('id_pasien');
             $table->string('keluhan');
             $table->string('tindakan')->nullable();

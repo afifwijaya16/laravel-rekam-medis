@@ -15,7 +15,7 @@ class CreateObatsTable extends Migration
     {
         Schema::create('obats', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nomor_obat');
+            $table->text('nomor_obat');
             $table->string('nama', 50);
             $table->string('gambar', 255)->nullable();
             $table->integer('harga')->length(10)->unsigned();
