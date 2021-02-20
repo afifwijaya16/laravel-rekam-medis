@@ -17,7 +17,7 @@
              <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                  data-accordion="false">
                 @if(Auth::guard('web')->check())
-                    @include('template_backend/sidebaradmin')
+                    @include('template_backend/sidebar')
                 @else 
                 <p class="text-success">
                     You Must Login

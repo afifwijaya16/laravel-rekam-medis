@@ -15,25 +15,28 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/test', function () {
-    return view('test');
-});
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('/obat','ObatController');
 Route::resource('/pasien','PasienController');
 Route::resource('/dokter','DokterController');
+Route::resource('/apoteker','ApotekerController');
+Route::resource('/kasir','KasirController');
+
 Route::resource('/registrasi','RegistrasiController')->names('registrasi');
 Route::get('/cek_pasien/{id}','RegistrasiController@cek_pasien')->name('cek_pasien');
+
 Route::resource('/diagnosa','DiagnosaController')->names('diagnosa');
 Route::get('diagnosa/cek_data/{id}','DiagnosaController@cek_data')->name('diagnosa.cek_data');
 Route::resource('/resep','ResepController')->names('resep');
+
 Route::resource('/apotik','ApotikController')->names('apotik');
-Route::resource('/pembayaran','PembayaranController')->names('pembayaran');
 Route::get('apotik/cek_data/{id}','ApotikController@cek_data')->name('cek_data');
+
+Route::resource('/pembayaran','PembayaranController')->names('pembayaran');
 Route::get('pembayaran/cek_data/{id}','PembayaranController@cek_data')->name('pembayaran.cek_data');
+
 Route::resource('/rekam_medis','RekammedisController')->names('rekam_medis');
 Route::get('rekam_medis/cek_data_rekam_medis/{id}','RekammedisController@cek_data')->name('cek_data_rekam_medis');
 Route::post('/tambah_resep_obat','DiagnosaController@tambah_resep_obat')->name('tambah_resep_obat');

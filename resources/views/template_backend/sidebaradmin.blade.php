@@ -11,6 +11,18 @@
     </a>
 </li>
 <li class="nav-item">
+    <a href="{{ route('apoteker.index') }}" class="nav-link {{ request()->is('apoteker*') ? 'active' : '' }}">
+        <i class="fa fa-users nav-icon"></i>
+        <p>Data Apoteker</p>
+    </a>
+</li>
+<li class="nav-item">
+    <a href="{{ route('kasir.index') }}" class="nav-link {{ request()->is('kasir*') ? 'active' : '' }}">
+        <i class="fa fa-users nav-icon"></i>
+        <p>Data Kasir</p>
+    </a>
+</li>
+<li class="nav-item">
     <a href="{{ route('pasien.index') }}" class="nav-link {{ request()->is('pasien*') ? 'active' : '' }}">
         <i class="fa fa-address-card nav-icon"></i>
         <p>Data Pasien</p>
