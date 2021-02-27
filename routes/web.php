@@ -19,7 +19,11 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('/obat','ObatController');
+
 Route::resource('/pasien','PasienController');
+
+Route::get('/data_pasien/{id}','BarcodeController@data_pasien')->name('data_pasien');
+
 Route::resource('/dokter','DokterController');
 Route::resource('/apoteker','ApotekerController');
 Route::resource('/kasir','KasirController');
