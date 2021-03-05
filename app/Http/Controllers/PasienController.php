@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Pasien;
+use App\User;
 
 class PasienController extends Controller
 {
@@ -38,6 +39,18 @@ class PasienController extends Controller
             'pekerjaan' => 'required',
             'telepon' => 'required',
             'alergi_obat' => 'required',
+            'email' => 'required',
+        ]);
+
+        $pasien_acc = User::create([
+            'name' => $request->nama_pasien,
+            'email' => $request->email,
+            'no_telepon' => $request->telepon,
+            'alamat' => $request->alamat,
+            'tanggal_lahir' => $request->tgl_lahir,
+            'password' => bcrypt('123'),
+            'level' => 'User',
+            
         ]);
 
         $pasien = Pasien::create([
@@ -49,8 +62,10 @@ class PasienController extends Controller
             'pekerjaan' => $request->pekerjaan,
             'telepon' => $request->telepon,
             'alergi_obat' => $request->alergi_obat,
+            'user_id' => $pasien_acc->id
         ]);
-        
+
+
         return redirect()->route('pasien.index')->with('status', 'Berhasil Menambah Data');
     }
 
@@ -104,7 +119,9 @@ class PasienController extends Controller
     public function destroy($id)
     {
         $pasien = Pasien::findorfail($id);
+        $pasien_acc = User::where('id', $pasien->user_id);
         $pasien->delete();
+        $pasien_acc->delete();
 
         return redirect()->route('pasien.index')->with('status', 'Berhasil Menghapus Data');
     }

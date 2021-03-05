@@ -48,4 +48,8 @@ class User extends Authenticatable
     public function rekammedis(){
         return $this->belongsTo('App\Rekammedis');
     }
+
+    public function pasien(){
+        return $this->hasOne('App\Pasien');
+    }
 }

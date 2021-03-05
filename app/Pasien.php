@@ -15,5 +15,11 @@ class Pasien extends Model
         'pekerjaan',
         'telepon',
         'alergi_obat',
+        'user_id',
     ];
+
+    public function user_pasien(){
+        return $this->belongsTo('App\User', 'user_id');
+    }
+
 }

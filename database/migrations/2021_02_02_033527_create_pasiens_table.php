@@ -23,6 +23,7 @@ class CreatePasiensTable extends Migration
             $table->string('pekerjaan', 20);
             $table->string('telepon', 15);
             $table->string('alergi_obat', 30);
+            $table->integer('user_id');
             $table->timestamps();
         });
     }
