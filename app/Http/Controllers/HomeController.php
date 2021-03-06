@@ -46,12 +46,12 @@ class HomeController extends Controller
         $this->validate($request, [
             'password_change' => 'required',
         ]);
-        $penduduk = User::findorfail(Auth::id());
+        $pasien = User::findorfail(Auth::id());
 
-        $penduduk_data = [
+        $pasien_data = [
             'password' => Hash::make($request->password_change),
         ];
-        $penduduk->update($penduduk_data);
+        $pasien->update($pasien_data);
         return redirect()->route('home');
     }
 
@@ -82,11 +82,23 @@ class HomeController extends Controller
             return redirect()->back()->with("error","Ulangi Password Baru.");
         }
 
-        $penduduk = User::findorfail(Auth::id());
-        $penduduk->password = Hash::make($request->get('new_password'));
-        $penduduk->save();
+        $pasien = User::findorfail(Auth::id());
+        $pasien->password = Hash::make($request->get('new_password'));
+        $pasien->save();
             
         return redirect()->back()->with("success","Password changed successfully !");
     }
 
+    public function rekam_pasien() {
+        $user = User::findorfail(Auth::id());
+        $pasien = Pasien::where('user_id', $user->id)->first();
+        $rekam_medis = Rekammedis::where('id_pasien', $pasien->id)->where('status_rekam_medis', 'Telah Di Cek Apoteker')->where('status_pembayaran', '1')->orderBy('updated_at', 'desc')->get();
+        return view('profile_pasien', compact('pasien','rekam_medis'));
+    }
+
+    public function detail_rekam_pasien($id) {
+        $rekam_medis = Rekammedis::findorfail($id);
+        $total_harga = collect($rekam_medis->resep->detailpengeluaran)->sum('total'); 
+        return view('rekam_medis.modal_detail', compact('rekam_medis','total_harga'))->renderSections()['modal'];
+    }
 }

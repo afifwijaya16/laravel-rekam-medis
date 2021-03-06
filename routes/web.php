@@ -63,3 +63,5 @@ Route::get('/laporan_pendapatan/filter', 'LaporanController@filter_laporan_penda
 // password
 Route::get('/perbaruipassword', 'HomeController@perbarui_password')->name('perbaruipassword');
 Route::post('/perbaruipassword_new','HomeController@update')->name('perbaruipassword_new');
+Route::get('/rekam_pasien','HomeController@rekam_pasien')->name('rekam_pasien');
+Route::get('/detail_rekam_pasien/{id}','HomeController@detail_rekam_pasien')->name('detail_rekam_pasien');

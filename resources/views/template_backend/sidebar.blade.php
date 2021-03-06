@@ -6,4 +6,6 @@
     @include('template_backend/sidebarapoteker')
 @elseif (Auth::user()->level == 'Kasir')
     @include('template_backend/sidebarkasir')
+@elseif (Auth::user()->level == 'User')
+    @include('template_backend/sidebaruser')
 @endif
