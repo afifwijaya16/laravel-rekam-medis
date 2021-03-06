@@ -90,6 +90,19 @@
                                 @enderror
                             </div>
                         </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="text"
+                                    class="form-control form-control-sm @error('email') is-invalid @enderror"
+                                    value="{{ $pasien->user_pasien->email }}" name="email" placeholder="Masukan Email">
+                                @error('email')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
@@ -104,6 +117,15 @@
                                 @enderror
                             </div>
                         </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="text" class="form-control form-control-sm @error('password') is-invalid @enderror" name="password">
+                        @error('password')
+                        <div class="invalid-feedback">
+                          {{ $message }}
+                        </div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <button class="btn btn-sm btn-primary"><i class="fa fa-edit"></i> Perbarui</button>

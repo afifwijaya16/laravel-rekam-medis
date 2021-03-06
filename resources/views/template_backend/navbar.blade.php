@@ -18,7 +18,7 @@
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item dropdown-footer" href=""> Perbarui Password </a>
+                <a class="dropdown-item dropdown-footer" href="{{route('perbaruipassword')}}"> Perbarui Password </a>
                 <a class="dropdown-item dropdown-footer" href=""
                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                     {{ __('Logout') }}

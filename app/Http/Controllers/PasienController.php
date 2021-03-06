@@ -94,6 +94,7 @@ class PasienController extends Controller
         ]);
 
         $pasien = Pasien::findorfail($id);
+        $pasien_acc = User::where('id', $pasien->user_id);
 
         $pasien_data = [
             'nama_pasien' => $request->nama_pasien,
@@ -104,6 +105,27 @@ class PasienController extends Controller
             'telepon' => $request->telepon,
             'alergi_obat' => $request->alergi_obat,
         ];
+
+        if($request->input('password')) {
+            $pasien_data_acc = [
+                'name' => $request->nama_pasien,
+                'email' => $request->email,
+                'no_telepon' => $request->telepon,
+                'alamat' => $request->alamat,
+                'tanggal_lahir' => $request->tgl_lahir,
+                'password' => bcrypt($request->password),
+            ];
+        } else {
+            $pasien_data_acc = [
+                'name' => $request->nama_pasien,
+                'email' => $request->email,
+                'no_telepon' => $request->telepon,
+                'alamat' => $request->alamat,
+                'tanggal_lahir' => $request->tgl_lahir,
+            ];
+        }
+
+        $pasien_acc->update($pasien_data_acc);
 
         $pasien->update($pasien_data);
 

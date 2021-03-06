@@ -15,7 +15,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Auth::routes([
+    'register' => false, // Registration Routes...
+    'reset' => false, // Password Reset Routes...
+    'verify' => false, // Email Verification Routes...
+]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('/obat','ObatController');
@@ -56,3 +60,6 @@ Route::get('/laporan_pengeluaran_obat/filter', 'LaporanController@filter_laporan
 // laporan pendapatan
 Route::get('/laporan_pendapatan', 'LaporanController@laporan_pendapatan')->name('laporan_pendapatan');
 Route::get('/laporan_pendapatan/filter', 'LaporanController@filter_laporan_pendapatan')->name('laporan_pendapatan.filter');
+// password
+Route::get('/perbaruipassword', 'HomeController@perbarui_password')->name('perbaruipassword');
+Route::post('/perbaruipassword_new','HomeController@update')->name('perbaruipassword_new');
