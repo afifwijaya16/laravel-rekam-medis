@@ -71,7 +71,8 @@ class PasienController extends Controller
 
     public function show($id)
     {
-        
+        $pasien = Pasien::findorfail($id);
+        return view('pasien.show', compact('pasien'));
     }
 
     

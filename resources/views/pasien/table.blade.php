@@ -28,7 +28,8 @@
                         @csrf
                         @method('delete')
                         <div class="btn-group">
-                            <a href="{{ route('pasien.edit', $hasil-> id) }}" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>
+                            <a href="{{ route('pasien.show', $hasil->id) }}" class="btn btn-sm bg-purple"><i class="fa fa-file"></i></a>
+                            <a href="{{ route('pasien.edit', $hasil->id) }}" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>
                             <button class="btn btn-sm btn-danger" name="delete" type="submit"
                                 onclick="deleteFunction({{ $hasil->id}})">
                                 <i class="fa fa-trash"></i>
